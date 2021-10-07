@@ -1,8 +1,22 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="U5CDCG_HFT_2021221_Database.mdf" />
+    <None Remove="U5CDCG_HFT_2021221_Database_log.ldf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="U5CDCG_HFT_2021221_Database.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="U5CDCG_HFT_2021221_Database_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\U5CDCG_HFT_2021221.Models\U5CDCG_HFT_2021221.Models.csproj" />

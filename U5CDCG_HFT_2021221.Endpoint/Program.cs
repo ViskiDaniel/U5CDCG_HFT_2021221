@@ -14,6 +14,7 @@ namespace U5CDCG_HFT_2021221.Endpoint
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
+            //Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\U5CDCG_HFT_2021221_Database.mdf;Integrated Security=True
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
