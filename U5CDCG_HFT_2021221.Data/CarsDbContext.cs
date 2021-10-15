@@ -14,6 +14,16 @@ namespace U5CDCG_HFT_2021221.Data
         public virtual DbSet<Brands> Brands { get; set; }
         public virtual DbSet<Owner> Owner { get; set; }
 
+        public CarsDbContext()
+        {
+            this.Database.EnsureCreated();
+        }
+
+        public CarsDbContext(DbContextOptions<CarsDbContext> options) : base(options)
+        {
+
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
