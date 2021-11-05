@@ -41,7 +41,7 @@ namespace U5CDCG_HFT_2021221.Repository
         public void Update(Book book)
         {
             var updated = Read(book.BookId);
-            updated.Title = book.Title;
+            updated.BookId = book.BookId;
             context.SaveChanges();
         }
     }
