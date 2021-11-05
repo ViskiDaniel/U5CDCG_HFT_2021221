@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -8,17 +9,19 @@ using System.Threading.Tasks;
 namespace U5CDCG_HFT_2021221.Models
 {
     [Table("Library")]
-    class Library
+    public class Library
     {
-        [ForeignKey(nameof(Books))]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ActionID { get; set; }
+        [ForeignKey(nameof(Models.Book))]
         public int BookId { get; set; }
-        [ForeignKey(nameof(Customers))]
+        [ForeignKey(nameof(Models.Customer))]
         public int CustomerId { get; set; }
-
         [NotMapped]
-        public virtual Books Book { get; set; }
+        public virtual Book Book { get; set; }
         [NotMapped]
-        public virtual Customers Customer { get; set; }
+        public virtual Customer Customer { get; set; }
 
         public DateTime StartofRental { get; set; }
         public DateTime EndofRental { get; set; }

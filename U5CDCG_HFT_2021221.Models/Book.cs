@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace U5CDCG_HFT_2021221.Models
 {
     [Table("Books")]
-    class Books
+    public class Book
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
