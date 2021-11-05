@@ -8,7 +8,7 @@ using U5CDCG_HFT_2021221.Models;
 
 namespace U5CDCG_HFT_2021221.Data
 {
-    class LibraryDbContext : DbContext
+    public class LibraryDbContext : DbContext
     {
         public DbSet<Book> Books { get; set; }
         public DbSet<Customer> Customers { get; set; }
