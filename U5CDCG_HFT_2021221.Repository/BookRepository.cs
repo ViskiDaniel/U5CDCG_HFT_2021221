@@ -8,7 +8,7 @@ using U5CDCG_HFT_2021221.Data;
 
 namespace U5CDCG_HFT_2021221.Repository
 {
-    class BookRepository : IBookRepository
+    public class BookRepository : IBookRepository
     {
         LibraryDbContext context;
 

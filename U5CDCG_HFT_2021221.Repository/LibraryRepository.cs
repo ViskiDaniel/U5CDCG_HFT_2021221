@@ -3,41 +3,45 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using U5CDCG_HFT_2021221.Data;
 using U5CDCG_HFT_2021221.Models;
 
 namespace U5CDCG_HFT_2021221.Repository
 {
-    class LibraryRepository:ILibraryRepository
+    public class LibraryRepository : ILibraryRepository
     {
-        LibraryRepository context;
-        public LibraryRepository(LibraryRepository context)
+        LibraryDbContext context;
+        public LibraryRepository(LibraryDbContext context)
         {
             this.context = context;
         }
 
-        public void Create(Library libraryId)
+        public void Create(Library library)
         {
-            throw new NotImplementedException();
+            context.Libraries.Add(library);
+            context.SaveChanges();
         }
 
         public void Delete(int libraryId)
         {
-            throw new NotImplementedException();
+            context.Remove(Read(libraryId));
         }
 
         public Library Read(int libraryId)
         {
-            throw new NotImplementedException();
+            return context.Libraries.FirstOrDefault(t => t.ActionID == libraryId);
         }
 
         public IQueryable<Library> ReadAll()
         {
-            throw new NotImplementedException();
+            return context.Libraries;
         }
 
         public void Update(Library library)
         {
-            throw new NotImplementedException();
+            var updated = Read(library.ActionID);
+            updated.ActionID = library.ActionID;
+            context.SaveChanges();
         }
     }
 }

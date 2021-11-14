@@ -8,7 +8,7 @@ using U5CDCG_HFT_2021221.Models;
 
 namespace U5CDCG_HFT_2021221.Repository
 {
-    class CustomerRepository : ICustomerRepository
+    public class CustomerRepository : ICustomerRepository
     {
         LibraryDbContext context;
         public CustomerRepository(LibraryDbContext context)
