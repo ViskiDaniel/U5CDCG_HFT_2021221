@@ -19,6 +19,9 @@ namespace U5CDCG_HFT_2021221.Models
         
         public int Age { get; set; }
 
+        [MaxLength(32)]
+        public string Email { get; set; }
+
         [NotMapped]
         public virtual ICollection<Library> Library { get; set; }
     }

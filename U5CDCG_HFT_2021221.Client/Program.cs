@@ -39,7 +39,15 @@ namespace U5CDCG_HFT_2021221.Client
             {
                 Console.WriteLine(item.Name);
             }
+            Console.WriteLine("---------------------------------------------------");
 
+            var ooo = liblog.currTaken();
+
+            List<Book> ooo2 = ooo.ToList();
+            foreach (var item in ooo2)
+            {
+                Console.WriteLine("{0} --- {1}", item.Author, item.Title);
+            }
 
 
             ;

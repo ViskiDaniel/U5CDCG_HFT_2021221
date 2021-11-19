@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using U5CDCG_HFT_2021221.Models;
 using U5CDCG_HFT_2021221.Repository;
-using System.Linq;
+
 
 namespace U5CDCG_HFT_2021221.Logic
 {
@@ -109,11 +109,34 @@ namespace U5CDCG_HFT_2021221.Logic
                       join z in custRepo.ReadAll()
                       on x.CustomerId equals z.CustomerId
                       where x.Customer.CustomerId==z.CustomerId
-                      select z                      
-                      ;
-
+                      select z;
            return current;
         }
+
+        public IEnumerable<Book> currTaken()
+        {
+            var tkn = from x in libRepo.ReadAll()
+                      join z in bookRepo.ReadAll()
+                      on x.BookId equals z.BookId
+                      where z.BookId == x.Book.BookId
+                      orderby z.Author
+                      select z;
+            return tkn;
+        }
+
+        public IEnumerable<Customer> emailHu()
+        {
+            var mail = from x in libRepo.ReadAll()
+                       join z in custRepo.ReadAll()
+                       on x.CustomerId equals z.CustomerId
+                       where z.Email.ToUpper().Contains("HU")
+                       select z;
+
+            return mail;
+        }
+
+
+
 
 
 
