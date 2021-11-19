@@ -114,7 +114,7 @@ namespace U5CDCG_HFT_2021221.Data
             Library l4 = new Library() { ActionID = 4, BookId = BookList[12].BookId, CustomerId = c4.CustomerId };
             Library l5 = new Library() { ActionID = 5, BookId = BookList[19].BookId, CustomerId = c5.CustomerId };
             Library l6 = new Library() { ActionID = 6, BookId = BookList[17].BookId, CustomerId = c6.CustomerId };
-            Library l7 = new Library() { ActionID = 7, BookId = BookList[20].BookId, CustomerId = c7.CustomerId };
+            Library l7 = new Library() { ActionID = 7, BookId = BookList[4].BookId, CustomerId = c7.CustomerId };
             Library l8 = new Library() { ActionID = 8, BookId = BookList[1].BookId, CustomerId = c8.CustomerId };
             Library l9 = new Library() { ActionID = 9, BookId = BookList[8].BookId, CustomerId = c9.CustomerId };
             Library l10 = new Library() { ActionID = 10, BookId = BookList[3].BookId, CustomerId = c10.CustomerId };

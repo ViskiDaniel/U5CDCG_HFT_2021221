@@ -1,13 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
     <ApplicationIcon />
     <StartupObject />
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\U5CDCG_HFT_2021221.Data\U5CDCG_HFT_2021221.Data.csproj" />
     <ProjectReference Include="..\U5CDCG_HFT_2021221.Models\U5CDCG_HFT_2021221.Models.csproj" />
   </ItemGroup>
 
