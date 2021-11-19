@@ -49,6 +49,20 @@ namespace U5CDCG_HFT_2021221.Client
                 Console.WriteLine("{0} --- {1}", item.Author, item.Title);
             }
 
+            Console.WriteLine("---------------------------------------------------");
+            var qqq = liblog.emailHu().ToList();
+            foreach (var item in qqq)
+            {
+                Console.WriteLine("{0} - {1}", item.Name, item.Email);
+            }
+            Console.WriteLine("---------------------------------------------------");
+
+            var ttt = liblog.authorName().ToList();
+            foreach (var item in ttt)
+            {
+                Console.WriteLine("{0} --- {1}", item.Author, item.Title);
+            }
+
 
             ;
 

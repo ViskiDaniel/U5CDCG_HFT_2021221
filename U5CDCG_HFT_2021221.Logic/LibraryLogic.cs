@@ -135,6 +135,17 @@ namespace U5CDCG_HFT_2021221.Logic
             return mail;
         }
 
+        public IEnumerable<Book> authorName()
+        {
+            var aut = from x in libRepo.ReadAll()
+                      join z in bookRepo.ReadAll()
+                      on x.BookId equals z.BookId
+                      where z.Author.ToUpper().Contains("TOLSTOY")
+                      select z;
+            return aut;
+
+        }
+
 
 
 
