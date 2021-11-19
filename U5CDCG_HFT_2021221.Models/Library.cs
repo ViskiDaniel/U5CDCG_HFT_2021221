@@ -22,7 +22,6 @@ namespace U5CDCG_HFT_2021221.Models
         public virtual Book Book { get; set; }
         [NotMapped]
         public virtual Customer Customer { get; set; }
-
         public DateTime StartofRental { get; set; }
         public DateTime EndofRental { get; set; }
 

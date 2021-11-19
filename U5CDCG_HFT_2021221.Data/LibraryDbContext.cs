@@ -36,6 +36,39 @@ namespace U5CDCG_HFT_2021221.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Book>(entity =>
+            {
+                entity
+                .HasMany(b => b.Library)
+                .WithOne(l => l.Book)
+                .HasForeignKey(b => b.BookId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+            });
+
+            modelBuilder.Entity<Customer>(entity =>
+            {
+                entity
+                .HasMany(c => c.Library)
+                .WithOne(l => l.Customer)
+                .HasForeignKey(c => c.CustomerId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+            });
+
+            modelBuilder.Entity<Library>(entity =>
+            {
+                entity
+                .HasOne(l=>l.Book)
+                .WithMany(b=>b.Library)
+                .HasForeignKey(l=>l.BookId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+                entity
+                .HasOne(l=>l.Customer)
+                .WithMany(b=>b.Library)
+                .HasForeignKey(l=>l.CustomerId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+            });
+
             var BookList = new List<Book> {
               new Book { BookId = 1, Author = "J. R. R. Tolkien", Title = "The Lord of the Rings", },
               new Book { BookId = 2, Author = "Emily Bronte", Title = "Wuthering Heights", },
