@@ -31,10 +31,29 @@ namespace U5CDCG_HFT_2021221.Test
 
             mockLibraryRepository.Setup(x => x.Create(It.IsAny<Library>()));
             mockLibraryRepository.Setup(x => x.ReadAll())
-            .Returns(new List<Library>() 
-            {new Library { Book=fakeBook1, Customer=fakeCustomer1 }, 
-             new Library {Book=fakeBook2, Customer=fakeCustomer2 }}
+            .Returns(new List<Library>()
+               {
+                new Library { Book=fakeBook1, Customer=fakeCustomer1 },
+                new Library {Book=fakeBook2, Customer=fakeCustomer2 }
+                }
             .AsQueryable());
+
+            mockBookRepository.Setup(y => y.Create(It.IsAny<Book>()));
+            mockBookRepository.Setup(y => y.ReadAll())
+                .Returns(new List<Book>()
+                {
+                    new Book{ Author=fakeBook1.Author, Title=fakeBook1.Title },
+                    new Book{ Author=fakeBook2.Author,  Title=fakeBook2.Title }
+                }.AsQueryable());
+
+            mockCustomerRepository.Setup(z => z.Create(It.IsAny<Customer>()));
+            mockCustomerRepository.Setup(z => z.ReadAll())
+                .Returns(new List<Customer>() 
+                { 
+                    new Customer{ Name=fakeCustomer1.Name, Age=fakeCustomer1.Age, Email=fakeCustomer1.Email},
+                    new Customer{ Name=fakeCustomer2.Name, Age=fakeCustomer2.Age, Email=fakeCustomer2.Email}
+                }.AsQueryable());
+
 
             liblog = new LibraryLogic(mockLibraryRepository.Object, mockBookRepository.Object, mockCustomerRepository.Object);
         }
