@@ -8,7 +8,7 @@ using U5CDCG_HFT_2021221.Data;
 
 namespace U5CDCG_HFT_2021221.Repository
 {
-    interface ILibraryRepository
+    public interface ILibraryRepository
     {
         void Create(Library libraryId);
         void Delete(int libraryId);
