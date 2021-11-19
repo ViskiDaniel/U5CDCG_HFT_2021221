@@ -88,7 +88,7 @@ namespace U5CDCG_HFT_2021221.Data
               new Book { BookId = 16, Author = "Stendhal", Title = "The Red and the Black", },
               new Book { BookId = 17, Author = "Stephen King", Title = "It", },
               new Book { BookId = 18, Author = "James Joyce", Title = "Ulysses", },
-              new Book { BookId = 19, Author = "Fyodor Dotoevsky", Title = "Crime and Punishment", },
+              new Book { BookId = 19, Author = "Fyodor Dostoevsky", Title = "Crime and Punishment", },
               new Book { BookId = 20, Author = "Mary Shelley", Title = "Frankenstein", },
             };
 
@@ -130,7 +130,7 @@ namespace U5CDCG_HFT_2021221.Data
             Library l15 = new Library() { ActionID = 15, BookId = BookList[2].BookId, CustomerId = c15.CustomerId };
 
             modelBuilder.Entity<Book>().HasData(BookList);
-            modelBuilder.Entity<Customer>().HasData(c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15, c16, c17, c18, c9, c20);
+            modelBuilder.Entity<Customer>().HasData(c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15, c16, c17, c18, c19, c20);
             modelBuilder.Entity<Library>().HasData(l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15);
 
         }
