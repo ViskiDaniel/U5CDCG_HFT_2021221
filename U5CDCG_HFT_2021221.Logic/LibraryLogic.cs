@@ -19,17 +19,44 @@ namespace U5CDCG_HFT_2021221.Logic
 
         public void Create(Library library)
         {
-            LibRepo.Create(library);
+            if (library.BookId <= 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+            if (library.CustomerId <= 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+            else
+            {
+                LibRepo.Create(library);
+            }
+            
         }
 
         public void Delete(int libraryId)
         {
-            LibRepo.Delete(libraryId);
+            if(libraryId <= 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+            else
+            {
+                LibRepo.Delete(libraryId);
+            }
+            
         }
 
         public Library Read(int libraryId)
         {
-            return LibRepo.Read(libraryId);
+            if (libraryId <= 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+            else
+            {
+                return LibRepo.Read(libraryId);
+            }
         }
 
         public IQueryable<Library> ReadAll()
@@ -39,7 +66,27 @@ namespace U5CDCG_HFT_2021221.Logic
 
         public void Update(Library library)
         {
-            LibRepo.Update(library);
+            if (library == null)
+            {
+                throw new NullReferenceException();
+            }
+            else if (library.Book == null)
+            {
+                throw new NullReferenceException();
+            }
+            else if (library.Customer == null)
+            {
+                throw new NullReferenceException();
+            }
+            else if(library.BookId <=0 || library.CustomerId <= 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+            else
+            {
+                LibRepo.Update(library);
+            }
+            
         }
     }
 }

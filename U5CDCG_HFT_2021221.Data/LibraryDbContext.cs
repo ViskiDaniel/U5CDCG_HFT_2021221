@@ -95,7 +95,7 @@ namespace U5CDCG_HFT_2021221.Data
             Customer c1 = new Customer() { CustomerId = 1, Name = "Kovács Jenő", Age = 23 };
             Customer c2 = new Customer() { CustomerId = 2, Name = "Tóth Géza", Age = 43 };
             Customer c3 = new Customer() { CustomerId = 3, Name = "Nagy Klaudia", Age = 52 };
-            Customer c4 = new Customer() { CustomerId = 4, Name = "Kiss Kálmán", Age = 17 };
+            Customer c4 = new Customer() { CustomerId = 4, Name = "Kiss Kálmán", Age = 19 };
             Customer c5 = new Customer() { CustomerId = 5, Name = "Szabó Elemér", Age = 62 };
             Customer c6 = new Customer() { CustomerId = 6, Name = "Fodor József", Age = 27 };
             Customer c7 = new Customer() { CustomerId = 7, Name = "Horváth Ildikó", Age = 35 };

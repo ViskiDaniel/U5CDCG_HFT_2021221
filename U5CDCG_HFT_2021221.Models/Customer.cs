@@ -16,6 +16,7 @@ namespace U5CDCG_HFT_2021221.Models
         public int CustomerId { get; set; }
         [Required]
         public string Name { get; set; }
+        
         public int Age { get; set; }
 
         [NotMapped]

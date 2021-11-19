@@ -19,17 +19,45 @@ namespace U5CDCG_HFT_2021221.Logic
 
         public void Create(Book book)
         {
-            BookRep.Create(book);
+            if (book.Title == null)
+            {
+                throw new NullReferenceException();
+            }
+            else if (book.Author == null)
+            {
+                throw new NullReferenceException();
+            }
+            else
+            {
+                BookRep.Create(book);
+            }
+            
         }
 
         public void Delete(int bookId)
         {
-            BookRep.Delete(bookId);
+            if (bookId < 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+            else
+            {
+                BookRep.Delete(bookId);
+            }
+
         }
 
         public Book Read(int bookId)
         {
-            return BookRep.Read(bookId);
+            if (bookId < 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+            else
+            {
+                return BookRep.Read(bookId);
+            }
+            
         }
 
         public IQueryable<Book> ReadAll()
@@ -39,7 +67,23 @@ namespace U5CDCG_HFT_2021221.Logic
 
         public void Update(Book book)
         {
-            BookRep.Update(book);
+            if (book == null)
+            {
+                throw new NullReferenceException();
+            }
+            else if (book.Author == null)
+            {
+                throw new NullReferenceException();
+            }
+            else if (book.Title == null)
+            {
+                throw new NullReferenceException();
+            }
+            else
+            {
+                BookRep.Update(book);
+            }
+            
         }
     }
 }
