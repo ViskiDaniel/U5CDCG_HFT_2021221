@@ -12,7 +12,7 @@ namespace U5CDCG_HFT_2021221.Logic
         void Create(Customer customer);
         void Delete(int customerId);
         Customer Read(int customerId);
-        IQueryable<Customer> ReadAll();
+        IEnumerable<Customer> ReadAll();
         void Update(Customer customer);
     }
 }

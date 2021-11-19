@@ -61,7 +61,7 @@ namespace U5CDCG_HFT_2021221.Logic
             
         }
 
-        public IQueryable<Customer> ReadAll()
+        public IEnumerable<Customer> ReadAll()
         {
             return CusRepo.ReadAll();
         }

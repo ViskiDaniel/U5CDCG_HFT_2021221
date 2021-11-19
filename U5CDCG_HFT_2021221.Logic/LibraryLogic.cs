@@ -5,16 +5,21 @@ using System.Text;
 using System.Threading.Tasks;
 using U5CDCG_HFT_2021221.Models;
 using U5CDCG_HFT_2021221.Repository;
+using System.Linq;
 
 namespace U5CDCG_HFT_2021221.Logic
 {
-    class LibraryLogic : ILibraryLogic
+    public class LibraryLogic : ILibraryLogic
     {
-        ILibraryRepository LibRepo;
+        ILibraryRepository libRepo;
+        IBookRepository bookRepo;
+        ICustomerRepository custRepo;
 
-        public LibraryLogic(ILibraryRepository librep)
+        public LibraryLogic(ILibraryRepository librep, IBookRepository bookrep, ICustomerRepository cusrep)
         {
-            LibRepo = librep;
+            libRepo = librep;
+            bookRepo = bookrep;
+            custRepo = cusrep;
         }
 
         public void Create(Library library)
@@ -29,22 +34,22 @@ namespace U5CDCG_HFT_2021221.Logic
             }
             else
             {
-                LibRepo.Create(library);
+                libRepo.Create(library);
             }
-            
+
         }
 
         public void Delete(int libraryId)
         {
-            if(libraryId <= 0)
+            if (libraryId <= 0)
             {
                 throw new ArgumentOutOfRangeException();
             }
             else
             {
-                LibRepo.Delete(libraryId);
+                libRepo.Delete(libraryId);
             }
-            
+
         }
 
         public Library Read(int libraryId)
@@ -55,13 +60,13 @@ namespace U5CDCG_HFT_2021221.Logic
             }
             else
             {
-                return LibRepo.Read(libraryId);
+                return libRepo.Read(libraryId);
             }
         }
 
-        public IQueryable<Library> ReadAll()
+        public IEnumerable<Library> ReadAll()
         {
-            return LibRepo.ReadAll();
+            return libRepo.ReadAll();
         }
 
         public void Update(Library library)
@@ -78,15 +83,39 @@ namespace U5CDCG_HFT_2021221.Logic
             {
                 throw new NullReferenceException();
             }
-            else if(library.BookId <=0 || library.CustomerId <= 0)
+            else if (library.BookId <= 0 || library.CustomerId <= 0)
             {
                 throw new ArgumentOutOfRangeException();
             }
             else
             {
-                LibRepo.Update(library);
+                libRepo.Update(library);
             }
-            
         }
+
+        public IEnumerable<Customer> olderCustomers()
+        {
+            var oldcus = from x in libRepo.ReadAll()
+                         join z in custRepo.ReadAll()
+                         on x.CustomerId equals z.CustomerId
+                         where z.Age > 50
+                         select z;
+            return oldcus;
+        }
+
+        public IEnumerable<Customer> currentCustomers()
+        {
+            var current = from x in libRepo.ReadAll()
+                      join z in custRepo.ReadAll()
+                      on x.CustomerId equals z.CustomerId
+                      where x.Customer.CustomerId==z.CustomerId
+                      select z                      
+                      ;
+
+           return current;
+        }
+
+
+
     }
 }

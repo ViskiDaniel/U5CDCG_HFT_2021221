@@ -12,7 +12,7 @@ namespace U5CDCG_HFT_2021221.Logic
         void Create(Book book);
         void Delete(int bookId);
         Book Read(int bookId);
-        IQueryable<Book> ReadAll();
+        IEnumerable<Book> ReadAll();
         void Update(Book book);
 
     }

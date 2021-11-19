@@ -60,7 +60,7 @@ namespace U5CDCG_HFT_2021221.Logic
             
         }
 
-        public IQueryable<Book> ReadAll()
+        public IEnumerable<Book> ReadAll()
         {
             return BookRep.ReadAll();
         }

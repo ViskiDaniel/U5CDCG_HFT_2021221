@@ -12,7 +12,7 @@ namespace U5CDCG_HFT_2021221.Logic
         void Create(Library libraryId);
         void Delete(int libraryId);
         Library Read(int libraryId);
-        IQueryable<Library> ReadAll();
+        IEnumerable<Library> ReadAll();
         void Update(Library library);
     }
 }

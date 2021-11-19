@@ -107,6 +107,11 @@ namespace U5CDCG_HFT_2021221.Data
             Customer c13 = new Customer() { CustomerId = 13, Name = "Farkas Anita", Age = 48 };
             Customer c14 = new Customer() { CustomerId = 14, Name = "Rácz Anna", Age = 57 };
             Customer c15 = new Customer() { CustomerId = 15, Name = "Fekete Péter", Age = 50 };
+            Customer c16 = new Customer() { CustomerId = 16, Name = "Nemes Dénes", Age = 65 };
+            Customer c17 = new Customer() { CustomerId = 17, Name = "Szalai Domonkos", Age = 24 };
+            Customer c18 = new Customer() { CustomerId = 18, Name = "Fehér Viktória", Age = 75 };
+            Customer c19 = new Customer() { CustomerId = 19, Name = "Orosz Tamás", Age = 51 };
+            Customer c20 = new Customer() { CustomerId = 20, Name = "Vass Bendegúz", Age = 39};
 
             Library l1 = new Library() { ActionID = 1, BookId = BookList[15].BookId, CustomerId = c1.CustomerId };
             Library l2 = new Library() { ActionID = 2, BookId = BookList[5].BookId, CustomerId = c2.CustomerId };
@@ -125,7 +130,7 @@ namespace U5CDCG_HFT_2021221.Data
             Library l15 = new Library() { ActionID = 15, BookId = BookList[2].BookId, CustomerId = c15.CustomerId };
 
             modelBuilder.Entity<Book>().HasData(BookList);
-            modelBuilder.Entity<Customer>().HasData(c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15);
+            modelBuilder.Entity<Customer>().HasData(c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15, c16, c17, c18, c9, c20);
             modelBuilder.Entity<Library>().HasData(l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15);
 
         }
