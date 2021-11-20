@@ -19,11 +19,11 @@ namespace U5CDCG_HFT_2021221.Logic
 
         public void Create(Book book)
         {
-            if (book.Title == null)
+            if (book.Author == null)
             {
                 throw new NullReferenceException();
             }
-            else if (book.Author == null)
+            else if (book.Title == null)
             {
                 throw new NullReferenceException();
             }

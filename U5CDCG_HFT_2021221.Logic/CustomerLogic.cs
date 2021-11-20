@@ -23,19 +23,26 @@ namespace U5CDCG_HFT_2021221.Logic
             {
                 throw new NullReferenceException();
             }
-            else if (customer.Age < 18)
+            else if (customer.Age <= 18)
             {
-                throw new ArgumentOutOfRangeException("Must be older than 18");
+                throw new ArgumentOutOfRangeException();
             }
             else if (customer.Name == null)
             {
                 throw new NullReferenceException();
             }
+            else if (customer.Email.Length > 32)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+            else if(!customer.Email.Contains("@"))
+            {
+                throw new Exception();
+            }
             else
             {
                 CusRepo.Create(customer);
-            }
-           
+            }           
         }
 
         public void Delete(int customerId)

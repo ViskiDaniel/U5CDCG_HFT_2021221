@@ -16,9 +16,10 @@ namespace U5CDCG_HFT_2021221.Models
         public int CustomerId { get; set; }
         [Required]
         public string Name { get; set; }
-        
+        [Required]
         public int Age { get; set; }
 
+        [Required]
         [MaxLength(32)]
         public string Email { get; set; }
 

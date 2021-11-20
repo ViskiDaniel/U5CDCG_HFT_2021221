@@ -14,7 +14,9 @@ namespace U5CDCG_HFT_2021221.Test
     [TestFixture]
     class TestClass
     {
-        LibraryLogic liblog;
+        LibraryLogic libLog;
+        BookLogic bookLog;
+        CustomerLogic custLog;
         public TestClass()
         {
 
@@ -55,21 +57,96 @@ namespace U5CDCG_HFT_2021221.Test
                 }.AsQueryable());
 
 
-            liblog = new LibraryLogic(mockLibraryRepository.Object, mockBookRepository.Object, mockCustomerRepository.Object);
+            libLog = new LibraryLogic(mockLibraryRepository.Object, mockBookRepository.Object, mockCustomerRepository.Object);
+            bookLog = new BookLogic(mockBookRepository.Object);
+            custLog = new CustomerLogic(mockCustomerRepository.Object);
         }
 
-        [Test]
+        
         public void huTest()
         {
             
-            var expected = liblog.authorName();
-            Assert.That(expected, Is.SameAs(liblog.authorName()));
+            var expected = libLog.authorName();
+            Assert.That(expected, Is.SameAs(libLog.authorName()));
+        }
+
+        [TestCase("Author","Title", true)]
+        [TestCase("Author", null, false)]
+        [TestCase(null, null, false)]
+        [TestCase(null, "Title", false)]
+        public void CreateBookTest(string name, string title, bool result)
+        {
+            if (result)
+            {
+                Assert.That(() => {
+                    bookLog.Create(new Book { Author = name, Title = title });
+                }, Throws.Nothing);
+            }
+            else
+            {
+                Assert.That(() => {
+                    bookLog.Create(new Book { Author = name, Title = title });
+                }, Throws.Exception);
+            }
+        }
+
+        [TestCase("John Doe", 19, "johndoe@gmail.com", true)]
+        [TestCase("John Doe", 19, null, false)]
+        [TestCase("John Doe", 17, "johndoe@gmail.com", false)]
+        [TestCase("John Doe", 19, "johndoe@gmail.commmmmmmmmmmmmmmmmmm", false)]
+        [TestCase(null, 19, "johndoe@gmail.com", false)]
+        [TestCase("John Doe", 19, "johndoezgmail.com", false)]
+        public void CreateCustomerTest(string name, int age, string email, bool result)
+        {
+            if (result)
+            {
+                Assert.That(() => { custLog.Create(new Customer { Name = name, Age = age, Email = email }); }, Throws.Nothing);
+            }
+            else
+            {
+                Assert.That(() => { custLog.Create(new Customer { Name = name, Age = age, Email = email }); }, Throws.Exception);
+            }
+            
+        }
+
+        [TestCase(1, 1, true)]
+        [TestCase(-1, 1, false)]
+        [TestCase(1, -1, false)]
+        [TestCase(-1, -1, false)]
+        [TestCase(null, -1, false)]
+        [TestCase(-1, null, false)]
+        [TestCase(null, null, false)]
+        public void LibraryTest(int customerId, int bookid, bool result)
+        {
+            if (result)
+            {
+                Assert.That(() => { libLog.Create(new Library { BookId = bookid, CustomerId = customerId }); }, Throws.Nothing);
+            }
+            else
+            {
+                Assert.That(() => { libLog.Create(new Library { BookId = bookid, CustomerId = customerId }); }, Throws.Exception);
+            }
         }
 
         [Test]
-        public void CreateTest()
+        public void NullBookTest()
         {
+            Assert.That(() => { bookLog.Create(new Book { Author = "Author", Title = "Title" }); }, Throws.Nothing);
+            Assert.That(() => { bookLog.Create(new Book { }); }, Throws.Exception);
+        }
 
+        [Test]
+        public void NullCustTest()
+        {
+            Assert.That(() => { custLog.Create(new Customer { Name = "John Doe", Age = 20, Email = "johndoe@gmail.com" }); }, Throws.Nothing);
+            Assert.That(() => { custLog.Create(new Customer { }); }, Throws.Exception);
+        }
+
+        [Test]
+        public void NullLibTest()
+        {
+            Assert.That(() => { libLog.Create(new Library { CustomerId = 1, BookId = 1 }); }, Throws.Nothing);
+            Assert.That(() => { libLog.Create(new Library { }); }, Throws.Exception);
         }
     }
 }
