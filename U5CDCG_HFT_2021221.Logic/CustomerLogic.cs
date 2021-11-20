@@ -8,7 +8,7 @@ using U5CDCG_HFT_2021221.Repository;
 
 namespace U5CDCG_HFT_2021221.Logic
 {
-    class CustomerLogic : ICustomerLogic
+    public class CustomerLogic : ICustomerLogic
 
     {
         ICustomerRepository CusRepo;

@@ -24,10 +24,10 @@ namespace U5CDCG_HFT_2021221.Test
             Mock<ICustomerRepository> mockCustomerRepository = new Mock<ICustomerRepository>();
 
 
-            Book fakeBook1 = new Book { Author = "John Smith", Title = "Example" };
+            Book fakeBook1 = new Book { Author = "John Tolstoy", Title = "Example" };
             Book fakeBook2 = new Book { Author = "Jane Smith", Title = "Fight" };
             Customer fakeCustomer1 = new Customer { Name = "Jane Doe", Age = 20, Email = "janedoe@gmail.com" };
-            Customer fakeCustomer2 = new Customer { Name = "John Doe", Age = 22, Email = "johndoe@gmail.com" };
+            Customer fakeCustomer2 = new Customer { Name = "John Doe", Age = 22, Email = "johndoe@gmail.hu" };
 
             mockLibraryRepository.Setup(x => x.Create(It.IsAny<Library>()));
             mockLibraryRepository.Setup(x => x.ReadAll())
@@ -58,5 +58,18 @@ namespace U5CDCG_HFT_2021221.Test
             liblog = new LibraryLogic(mockLibraryRepository.Object, mockBookRepository.Object, mockCustomerRepository.Object);
         }
 
+        [Test]
+        public void huTest()
+        {
+            
+            var expected = liblog.authorName();
+            Assert.That(expected, Is.SameAs(liblog.authorName()));
+        }
+
+        [Test]
+        public void CreateTest()
+        {
+
+        }
     }
 }
