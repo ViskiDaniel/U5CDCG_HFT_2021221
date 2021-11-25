@@ -11,8 +11,4 @@
     <ProjectReference Include="..\U5CDCG_HFT_2021221.Repository\U5CDCG_HFT_2021221.Repository.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>

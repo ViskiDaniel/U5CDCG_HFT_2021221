@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace U5CDCG_HFT_2021221.Models
@@ -19,11 +20,11 @@ namespace U5CDCG_HFT_2021221.Models
         [ForeignKey(nameof(Models.Customer))]
         public int CustomerId { get; set; }
         [NotMapped]
+        [JsonIgnore]
         public virtual Book Book { get; set; }
         [NotMapped]
+        [JsonIgnore]
         public virtual Customer Customer { get; set; }
-        public DateTime StartofRental { get; set; }
-        public DateTime EndofRental { get; set; }
 
     }
 }
