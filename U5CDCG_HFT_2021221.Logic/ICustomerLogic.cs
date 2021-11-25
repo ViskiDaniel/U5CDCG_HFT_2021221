@@ -7,7 +7,7 @@ using U5CDCG_HFT_2021221.Models;
 
 namespace U5CDCG_HFT_2021221.Logic
 {
-    interface ICustomerLogic
+    public interface ICustomerLogic
     {
         void Create(Customer customer);
         void Delete(int customerId);
