@@ -24,7 +24,7 @@ namespace U5CDCG_HFT_2021221.Endpoint.Controllers
         {
             return ll.ReadAll();
         }
-        [HttpGet("{id")]
+        [HttpGet("{id}")]
         public Library Get(int id)
         {
             return ll.Read(id);
@@ -34,7 +34,7 @@ namespace U5CDCG_HFT_2021221.Endpoint.Controllers
         [HttpPut]
         public void Put([FromBody] Library library)
         {
-            ll.Update(library);
+            ll.Update(library);            
         }
 
         [HttpPost]

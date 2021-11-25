@@ -19,7 +19,7 @@ namespace U5CDCG_HFT_2021221.Endpoint.Controllers
             this.cl = cl;
         }
 
-        [HttpGet("{id")]
+        [HttpGet("{id}")]
         public Customer Get(int id)
         {
             return cl.Read(id);

@@ -15,6 +15,11 @@ namespace U5CDCG_HFT_2021221.Client
         static void Main(string[] args)
         {
             LibraryDbContext db = new LibraryDbContext();
+            RestService rs = new RestService("http://localhost:43868/");
+
+            var books = rs.Get<Book>("books");
+            var customers = rs.Get<Customer>("customers");
+            var libraries = rs.Get<Library>("libraries");
 
             Console.WriteLine(db.Books.Count());
 

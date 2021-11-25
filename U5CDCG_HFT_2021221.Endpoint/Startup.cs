@@ -22,10 +22,10 @@ namespace U5CDCG_HFT_2021221.Endpoint
             services.AddControllers();
             services.AddTransient<IBookLogic, BookLogic>();
             services.AddTransient<ICustomerLogic, CustomerLogic>();
-            services.AddTransient<ILibraryRepository, LibraryRepository>();
+            services.AddTransient<ILibraryLogic, LibraryLogic>();
             services.AddTransient<IBookRepository, BookRepository>();
-            services.AddTransient<ILibraryRepository, LibraryRepository>();
             services.AddTransient<ICustomerRepository, CustomerRepository>();
+            services.AddTransient<ILibraryRepository, LibraryRepository>();
             services.AddTransient<LibraryDbContext, LibraryDbContext>();
 
         }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using U5CDCG_HFT_2021221.Logic;
+using Microsoft.AspNetCore.Http;
 using U5CDCG_HFT_2021221.Models;
 
 namespace U5CDCG_HFT_2021221.Endpoint.Controllers
@@ -19,7 +20,7 @@ namespace U5CDCG_HFT_2021221.Endpoint.Controllers
             this.bl = bl;
         }
 
-        [HttpGet("{id")]
+        [HttpGet("{id}")]
         public Book Get(int id)
         {
             return bl.Read(id);
