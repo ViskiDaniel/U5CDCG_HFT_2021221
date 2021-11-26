@@ -15,7 +15,7 @@ namespace U5CDCG_HFT_2021221.Client
         static void Main(string[] args)
         {
             LibraryDbContext db = new LibraryDbContext();
-            RestService rs = new RestService("http://localhost:43868/");
+            RestService rs = new RestService("http://localhost:64653/");
 
             var books = rs.Get<Book>("books");
             var customers = rs.Get<Customer>("customers");
@@ -69,7 +69,7 @@ namespace U5CDCG_HFT_2021221.Client
             }
 
 
-            ;
+            
 
         }
     }
