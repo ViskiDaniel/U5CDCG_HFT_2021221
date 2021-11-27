@@ -29,7 +29,7 @@ namespace U5CDCG_HFT_2021221.Test
             Book fakeBook1 = new Book { Author = "John Tolstoy", Title = "Example" };
             Book fakeBook2 = new Book { Author = "Jane Smith", Title = "Fight" };
             Customer fakeCustomer1 = new Customer { Name = "Jane Doe", Age = 20, Email = "janedoe@gmail.com" };
-            Customer fakeCustomer2 = new Customer { Name = "John Doe", Age = 22, Email = "johndoe@gmail.hu" };
+            Customer fakeCustomer2 = new Customer { Name = "John Doe", Age = 52, Email = "johndoe@gmail.hu", Gender=true };
 
             mockLibraryRepository.Setup(x => x.Create(It.IsAny<Library>()));
             mockLibraryRepository.Setup(x => x.ReadAll())
@@ -50,10 +50,10 @@ namespace U5CDCG_HFT_2021221.Test
 
             mockCustomerRepository.Setup(z => z.Create(It.IsAny<Customer>()));
             mockCustomerRepository.Setup(z => z.ReadAll())
-                .Returns(new List<Customer>() 
-                { 
-                    new Customer{ Name=fakeCustomer1.Name, Age=fakeCustomer1.Age, Email=fakeCustomer1.Email},
-                    new Customer{ Name=fakeCustomer2.Name, Age=fakeCustomer2.Age, Email=fakeCustomer2.Email}
+                .Returns(new List<Customer>()
+                {
+                    new Customer { Name=fakeCustomer2.Name,Age = fakeCustomer2.Age,Email = fakeCustomer2.Email },
+                    new Customer { Name = fakeCustomer2.Name, Age = fakeCustomer2.Age, Email = fakeCustomer2.Email }
                 }.AsQueryable());
 
 
@@ -62,15 +62,48 @@ namespace U5CDCG_HFT_2021221.Test
             custLog = new CustomerLogic(mockCustomerRepository.Object);
         }
 
-        
+        [Test]
         public void huTest()
-        {
-            
-            var expected = libLog.authorName();
-            Assert.That(expected, Is.SameAs(libLog.authorName()));
+        {            
+            var expected = libLog.emailHu().ToList();
+            Assert.That(expected[0].GetHashCode(), Is.EqualTo(new { _NAME = "John Doe", _EMAIL = "johndoe@gmail.hu", _TITLE = "Fight" }.GetHashCode()));
         }
 
-        [TestCase("Author","Title", true)]
+        [Test]
+        public void genderCountTest()
+        {
+            var expected = libLog.genderAvg().ToArray();
+            Assert.That(expected[0], Is.EqualTo(new KeyValuePair<string, int>("Nő", 1)));
+        }
+
+        [Test]
+        public void authorNameTest()
+        {
+            var expected = libLog.booksOfTolstoy().ToArray();
+            Assert.That(expected[0], Is.EqualTo(new KeyValuePair<string, string>("Jane Doe", "Example")));
+        }
+
+        [Test]
+        public void oldTest()
+        {
+            var expected = libLog.olderCustomers().ToArray();
+            Assert.That(expected[0].GetHashCode(), Is.EqualTo(new { _NAME = "John Doe", _AGE=52, _TITLE = "Fight" }.GetHashCode()));
+        }
+
+        [Test]
+        public void currentCustomers()
+        {
+            List<KeyValuePair<string, string>> list = new List<KeyValuePair<string, string>>();
+            list.Add(new KeyValuePair<string, string>("Jane Doe", "Example"));
+            list.Add(new KeyValuePair<string, string>("John Doe", "Fight"));
+
+            var expected = libLog.currentCustomers().ToList();
+            Assert.That(expected, Is.EqualTo(list));
+        }
+
+
+
+        [TestCase("Author", "Title", true)]
         [TestCase("Author", null, false)]
         [TestCase(null, null, false)]
         [TestCase(null, "Title", false)]
@@ -78,13 +111,15 @@ namespace U5CDCG_HFT_2021221.Test
         {
             if (result)
             {
-                Assert.That(() => {
+                Assert.That(() =>
+                {
                     bookLog.Create(new Book { Author = name, Title = title });
                 }, Throws.Nothing);
             }
             else
             {
-                Assert.That(() => {
+                Assert.That(() =>
+                {
                     bookLog.Create(new Book { Author = name, Title = title });
                 }, Throws.Exception);
             }
@@ -93,9 +128,9 @@ namespace U5CDCG_HFT_2021221.Test
         [TestCase("John Doe", 19, "johndoe@gmail.com", true, true)]
         [TestCase("John Doe", 19, null, true, false)]
         [TestCase("John Doe", 17, "johndoe@gmail.com", true, false)]
-        [TestCase("John Doe", 19, "johndoe@gmail.commmmmmmmmmmmmmmmmmm",true,  false)]
-        [TestCase(null, 19, "johndoe@gmail.com",true, false)]
-        [TestCase("John Doe", 19, "johndoezgmail.com",true, false)]
+        [TestCase("John Doe", 19, "johndoe@gmail.commmmmmmmmmmmmmmmmmm", true, false)]
+        [TestCase(null, 19, "johndoe@gmail.com", true, false)]
+        [TestCase("John Doe", 19, "johndoezgmail.com", true, false)]
         public void CreateCustomerTest(string name, int age, string email, bool gender, bool result)
         {
             if (result)
@@ -106,7 +141,7 @@ namespace U5CDCG_HFT_2021221.Test
             {
                 Assert.That(() => { custLog.Create(new Customer { Name = name, Age = age, Email = email }); }, Throws.Exception);
             }
-            
+
         }
 
         [TestCase(1, 1, true)]
@@ -138,7 +173,7 @@ namespace U5CDCG_HFT_2021221.Test
         [Test]
         public void NullCustTest()
         {
-            Assert.That(() => { custLog.Create(new Customer { Name = "John Doe", Age = 20, Email = "johndoe@gmail.com", Gender=true }); }, Throws.Nothing);
+            Assert.That(() => { custLog.Create(new Customer { Name = "John Doe", Age = 20, Email = "johndoe@gmail.com", Gender = true }); }, Throws.Nothing);
             Assert.That(() => { custLog.Create(new Customer { }); }, Throws.Exception);
         }
 

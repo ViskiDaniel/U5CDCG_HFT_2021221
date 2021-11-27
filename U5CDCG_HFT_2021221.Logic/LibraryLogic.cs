@@ -160,7 +160,7 @@ namespace U5CDCG_HFT_2021221.Logic
             return mail;
         }
 
-        public IEnumerable<KeyValuePair<string, string>> authorName()
+        public IEnumerable<KeyValuePair<string, string>> booksOfTolstoy()
         {
             var aut = from x in libRepo.ReadAll()
                       //join z in bookRepo.ReadAll()

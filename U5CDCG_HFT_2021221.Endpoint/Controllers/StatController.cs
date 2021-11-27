@@ -21,7 +21,7 @@ namespace U5CDCG_HFT_2021221.Endpoint.Controllers
         [HttpGet]
         public IEnumerable<KeyValuePair<string, string>> authorName()
         {
-            return libLog.authorName();
+            return libLog.booksOfTolstoy();
         }
 
         [HttpGet]
