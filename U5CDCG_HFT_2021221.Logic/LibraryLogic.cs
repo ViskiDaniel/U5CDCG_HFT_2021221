@@ -93,23 +93,32 @@ namespace U5CDCG_HFT_2021221.Logic
             }
         }
 
-        public IEnumerable<Customer> olderCustomers()
+        public IEnumerable<object> olderCustomers()
         {
             var oldcus = from x in libRepo.ReadAll()
-                         join z in custRepo.ReadAll()
-                         on x.CustomerId equals z.CustomerId
-                         where z.Age > 50
-                         select z;
+                             //join z in custRepo.ReadAll()
+                             //on x.CustomerId equals z.CustomerId
+                         where x.Customer.Age > 50
+                         select new
+                         {
+                             _NAME = x.Customer.Name,
+                             _AGE=x.Customer.Age,
+                             _TITLE=x.Book.Title
+                         };
             return oldcus;
         }
 
-        public IEnumerable<Customer> currentCustomers()
+
+
+
+        public IEnumerable<KeyValuePair<string, string>> currentCustomers()
         {
             var current = from x in libRepo.ReadAll()
-                      join z in custRepo.ReadAll()
-                      on x.CustomerId equals z.CustomerId
-                      where x.Customer.CustomerId==z.CustomerId
-                      select z;
+                          //join z in custRepo.ReadAll()
+                          //on x.CustomerId equals z.CustomerId
+                          //where x.Customer.CustomerId == z.CustomerId
+                          select new KeyValuePair<string, string>
+                          (x.Customer.Name, x.Book.Title);
            return current;
         }
 
@@ -124,24 +133,29 @@ namespace U5CDCG_HFT_2021221.Logic
             return tkn;
         }
 
-        public IEnumerable<Customer> emailHu()
+        public IEnumerable<object> emailHu()
         {
             var mail = from x in libRepo.ReadAll()
-                       join z in custRepo.ReadAll()
-                       on x.CustomerId equals z.CustomerId
-                       where z.Email.ToUpper().Contains("HU")
-                       select z;
+                           //join z in custRepo.ReadAll()
+                           //on x.CustomerId equals z.CustomerId
+                       where x.Customer.Email.ToUpper().Contains("HU")
+                       select new { 
+                           _NAME=x.Customer.Name,
+                           _EMAIL=x.Customer.Email,
+                           _TITLE=x.Book.Title
+                       };
 
             return mail;
         }
 
-        public IEnumerable<Book> authorName()
+        public IEnumerable<KeyValuePair<string, string>> authorName()
         {
             var aut = from x in libRepo.ReadAll()
-                      join z in bookRepo.ReadAll()
-                      on x.BookId equals z.BookId
-                      where z.Author.ToUpper().Contains("TOLSTOY")
-                      select z;
+                      //join z in bookRepo.ReadAll()
+                      //on x.BookId equals z.BookId
+                      where x.Book.Author.ToUpper().Contains("TOLSTOY")
+                      select new KeyValuePair<string, string>
+                      (x.Customer.Name, x.Book.Title);
             return aut;
 
         }

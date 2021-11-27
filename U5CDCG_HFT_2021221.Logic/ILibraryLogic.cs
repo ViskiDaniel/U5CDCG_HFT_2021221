@@ -14,5 +14,9 @@ namespace U5CDCG_HFT_2021221.Logic
         Library Read(int libraryId);
         IEnumerable<Library> ReadAll();
         void Update(Library library);
+        IEnumerable<KeyValuePair<string, string>> authorName();
+        IEnumerable<KeyValuePair<string, string>> currentCustomers();
+        IEnumerable<object> olderCustomers();
+        IEnumerable<object> emailHu();
     }
 }

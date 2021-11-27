@@ -18,7 +18,8 @@ namespace U5CDCG_HFT_2021221.Models
         public string Name { get; set; }
         [Required]
         public int Age { get; set; }
-
+        [Required]
+        public bool Gender { get; set; }
         [Required]
         [MaxLength(32)]
         public string Email { get; set; }
