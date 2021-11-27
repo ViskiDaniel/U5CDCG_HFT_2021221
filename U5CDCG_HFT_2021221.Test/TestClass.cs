@@ -91,7 +91,7 @@ namespace U5CDCG_HFT_2021221.Test
         }
 
         [Test]
-        public void currentCustomers()
+        public void currentCustomersTest()
         {
             List<KeyValuePair<string, string>> list = new List<KeyValuePair<string, string>>();
             list.Add(new KeyValuePair<string, string>("Jane Doe", "Example"));
@@ -151,7 +151,7 @@ namespace U5CDCG_HFT_2021221.Test
         [TestCase(null, -1, false)]
         [TestCase(-1, null, false)]
         [TestCase(null, null, false)]
-        public void LibraryTest(int customerId, int bookid, bool result)
+        public void CreateLibraryTest(int customerId, int bookid, bool result)
         {
             if (result)
             {
