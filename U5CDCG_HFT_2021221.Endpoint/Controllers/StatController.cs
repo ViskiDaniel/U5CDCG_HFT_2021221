@@ -36,10 +36,14 @@ namespace U5CDCG_HFT_2021221.Endpoint.Controllers
             return libLog.currentCustomers();
         }
         [HttpGet]
-        public IEnumerable<object> emailHuv2()
+        public IEnumerable<object> emailHu()
         {
             return libLog.emailHu();
         }
-
+        [HttpGet]
+        public IEnumerable<KeyValuePair<string, int>> genderAvg()
+        {
+            return libLog.genderAvg();
+        }
     }
 }

@@ -122,15 +122,27 @@ namespace U5CDCG_HFT_2021221.Logic
            return current;
         }
 
-        public IEnumerable<Book> currTaken()
+        public IEnumerable<KeyValuePair<string, int>> genderAvg()
         {
-            var tkn = from x in libRepo.ReadAll()
-                      join z in bookRepo.ReadAll()
-                      on x.BookId equals z.BookId
-                      where z.BookId == x.Book.BookId
-                      orderby z.Author
-                      select z;
-            return tkn;
+            var avg = from x in libRepo.ReadAll()
+                      group x by x.Customer.Gender
+                      into g
+                      select new  KeyValuePair<string, int>(newValue(g.Key), g.Count());
+                      
+                     
+            return avg;
+        }
+
+        static string newValue(bool value)
+        {
+            if (value)
+            {
+                return "Férfi";
+            }
+            else
+            {
+                return "Nő";
+            }
         }
 
         public IEnumerable<object> emailHu()

@@ -18,5 +18,6 @@ namespace U5CDCG_HFT_2021221.Logic
         IEnumerable<KeyValuePair<string, string>> currentCustomers();
         IEnumerable<object> olderCustomers();
         IEnumerable<object> emailHu();
+        IEnumerable<KeyValuePair<string, int>> genderAvg();
     }
 }

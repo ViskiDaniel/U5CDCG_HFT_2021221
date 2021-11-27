@@ -92,26 +92,26 @@ namespace U5CDCG_HFT_2021221.Data
               new Book { BookId = 20, Author = "Mary Shelley", Title = "Frankenstein", },
             };
 
-            Customer c1 = new Customer() { CustomerId = 1, Name = "Kovács Jenő", Age = 23, Email="kovacsjeno@gmail.com" };
-            Customer c2 = new Customer() { CustomerId = 2, Name = "Tóth Géza", Age = 43, Email = "geza1978@gmail.com" };
-            Customer c3 = new Customer() { CustomerId = 3, Name = "Nagy Klaudia", Age = 52, Email = "klaudiaaa@citromail.hu" };
-            Customer c4 = new Customer() { CustomerId = 4, Name = "Kiss Kálmán", Age = 19, Email = "kiss.kalman@gmail.com" };
-            Customer c5 = new Customer() { CustomerId = 5, Name = "Szabó Elemér", Age = 62, Email = "szelemer4@gmail.com" };
-            Customer c6 = new Customer() { CustomerId = 6, Name = "Fodor József", Age = 27, Email = "fodjoz@domain.com" };
-            Customer c7 = new Customer() { CustomerId = 7, Name = "Horváth Ildikó", Age = 35, Email = "ildiko@gmail.com" };
-            Customer c8 = new Customer() { CustomerId = 8, Name = "Molnár Krisztina", Age = 31, Email = "kovacsjeno@gmail.com" };
-            Customer c9 = new Customer() { CustomerId = 9, Name = "Kádár Béla", Age = 46, Email = "belavagyok@freemail.hu" };
-            Customer c10 = new Customer() { CustomerId = 10, Name = "Papp Károly", Age = 19, Email = "karcsi.420@gmail.com" };
-            Customer c11 = new Customer() { CustomerId = 11, Name = "Varga Dezső", Age = 27, Email = "v.dezso@gmail.com" };
-            Customer c12 = new Customer() { CustomerId = 12, Name = "Juhász Ákos", Age = 34, Email = "akosjuhasz@gmail.com" };
-            Customer c13 = new Customer() { CustomerId = 13, Name = "Farkas Anita", Age = 48, Email = "farkas.anita.1973@outlook.com" };
-            Customer c14 = new Customer() { CustomerId = 14, Name = "Rácz Anna", Age = 57, Email = "annaracz57@gmail.com" };
-            Customer c15 = new Customer() { CustomerId = 15, Name = "Fekete Péter", Age = 50, Email = "fpeter@gmail.com" };
-            Customer c16 = new Customer() { CustomerId = 16, Name = "Nemes Dénes", Age = 65, Email = "nemesden@citromail.hu" };
-            Customer c17 = new Customer() { CustomerId = 17, Name = "Szalai Domonkos", Age = 24, Email = "sz.dom@gmail.com" };
-            Customer c18 = new Customer() { CustomerId = 18, Name = "Fehér Viktória", Age = 75, Email = "feherv1@gmail.com" };
-            Customer c19 = new Customer() { CustomerId = 19, Name = "Orosz Tamás", Age = 51, Email = "otamas007@gmail.com" };
-            Customer c20 = new Customer() { CustomerId = 20, Name = "Vass Bendegúz", Age = 39, Email = "vbendi12@gmail.com" };
+            Customer c1 = new Customer() { CustomerId = 1, Name = "Kovács Jenő", Age = 23, Email="kovacsjeno@gmail.com", Gender=true };
+            Customer c2 = new Customer() { CustomerId = 2, Name = "Tóth Géza", Age = 43, Email = "geza1978@gmail.com", Gender = true };
+            Customer c3 = new Customer() { CustomerId = 3, Name = "Nagy Klaudia", Age = 52, Email = "klaudiaaa@citromail.hu", Gender = false };
+            Customer c4 = new Customer() { CustomerId = 4, Name = "Kiss Kálmán", Age = 19, Email = "kiss.kalman@gmail.com", Gender = true };
+            Customer c5 = new Customer() { CustomerId = 5, Name = "Szabó Elemér", Age = 62, Email = "szelemer4@gmail.com", Gender = true };
+            Customer c6 = new Customer() { CustomerId = 6, Name = "Fodor József", Age = 27, Email = "fodjoz@domain.com", Gender = true };
+            Customer c7 = new Customer() { CustomerId = 7, Name = "Horváth Ildikó", Age = 35, Email = "ildiko@gmail.com", Gender = false };
+            Customer c8 = new Customer() { CustomerId = 8, Name = "Molnár Krisztina", Age = 31, Email = "kovacsjeno@gmail.com", Gender = false };
+            Customer c9 = new Customer() { CustomerId = 9, Name = "Kádár Béla", Age = 46, Email = "belavagyok@freemail.hu", Gender = true };
+            Customer c10 = new Customer() { CustomerId = 10, Name = "Papp Károly", Age = 19, Email = "karcsi.420@gmail.com", Gender = true };
+            Customer c11 = new Customer() { CustomerId = 11, Name = "Varga Dezső", Age = 27, Email = "v.dezso@gmail.com", Gender = true };
+            Customer c12 = new Customer() { CustomerId = 12, Name = "Juhász Ákos", Age = 34, Email = "akosjuhasz@gmail.com", Gender = true };
+            Customer c13 = new Customer() { CustomerId = 13, Name = "Farkas Anita", Age = 48, Email = "farkas.anita.1973@outlook.com", Gender = false };
+            Customer c14 = new Customer() { CustomerId = 14, Name = "Rácz Anna", Age = 57, Email = "annaracz57@gmail.com", Gender = false };
+            Customer c15 = new Customer() { CustomerId = 15, Name = "Fekete Péter", Age = 50, Email = "fpeter@gmail.com", Gender = true };
+            Customer c16 = new Customer() { CustomerId = 16, Name = "Nemes Dénes", Age = 65, Email = "nemesden@citromail.hu", Gender = true };
+            Customer c17 = new Customer() { CustomerId = 17, Name = "Szalai Domonkos", Age = 24, Email = "sz.dom@gmail.com", Gender = true };
+            Customer c18 = new Customer() { CustomerId = 18, Name = "Fehér Viktória", Age = 75, Email = "feherv1@gmail.com", Gender = false };
+            Customer c19 = new Customer() { CustomerId = 19, Name = "Orosz Tamás", Age = 51, Email = "otamas007@gmail.com", Gender = true };
+            Customer c20 = new Customer() { CustomerId = 20, Name = "Vass Bendegúz", Age = 39, Email = "vbendi12@gmail.com", Gender = true };
 
             Library l1 = new Library() { ActionID = 1, BookId = BookList[15].BookId, CustomerId = c1.CustomerId };
             Library l2 = new Library() { ActionID = 2, BookId = BookList[5].BookId, CustomerId = c2.CustomerId };

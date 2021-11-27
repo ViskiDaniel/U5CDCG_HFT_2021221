@@ -90,13 +90,13 @@ namespace U5CDCG_HFT_2021221.Test
             }
         }
 
-        [TestCase("John Doe", 19, "johndoe@gmail.com", true)]
-        [TestCase("John Doe", 19, null, false)]
-        [TestCase("John Doe", 17, "johndoe@gmail.com", false)]
-        [TestCase("John Doe", 19, "johndoe@gmail.commmmmmmmmmmmmmmmmmm", false)]
-        [TestCase(null, 19, "johndoe@gmail.com", false)]
-        [TestCase("John Doe", 19, "johndoezgmail.com", false)]
-        public void CreateCustomerTest(string name, int age, string email, bool result)
+        [TestCase("John Doe", 19, "johndoe@gmail.com", true, true)]
+        [TestCase("John Doe", 19, null, true, false)]
+        [TestCase("John Doe", 17, "johndoe@gmail.com", true, false)]
+        [TestCase("John Doe", 19, "johndoe@gmail.commmmmmmmmmmmmmmmmmm",true,  false)]
+        [TestCase(null, 19, "johndoe@gmail.com",true, false)]
+        [TestCase("John Doe", 19, "johndoezgmail.com",true, false)]
+        public void CreateCustomerTest(string name, int age, string email, bool gender, bool result)
         {
             if (result)
             {
@@ -138,7 +138,7 @@ namespace U5CDCG_HFT_2021221.Test
         [Test]
         public void NullCustTest()
         {
-            Assert.That(() => { custLog.Create(new Customer { Name = "John Doe", Age = 20, Email = "johndoe@gmail.com" }); }, Throws.Nothing);
+            Assert.That(() => { custLog.Create(new Customer { Name = "John Doe", Age = 20, Email = "johndoe@gmail.com", Gender=true }); }, Throws.Nothing);
             Assert.That(() => { custLog.Create(new Customer { }); }, Throws.Exception);
         }
 
