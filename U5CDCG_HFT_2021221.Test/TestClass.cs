@@ -197,16 +197,69 @@ namespace U5CDCG_HFT_2021221.Test
             Assert.That(() => { libLog.Create(new Library { }); }, Throws.Exception);
         }
         
-        [TestCase("John Tolstoyy", "Exxample", 2, true)]
-        [TestCase(null, "Exxample", 2, true)]
-        [TestCase("John Tolstoyy", null, 2, true)]
-        [TestCase("John Tolstoyy", "Exxample", -1, true)]
-        [TestCase("John Tolstoyy", "Exxample", 2, true)]
-        public void updateTest()
+        [TestCase("John Tolstoyy", "Exxample", 1, true)]
+        [TestCase(null, "Exxample", 1, false)]
+        [TestCase("John Tolstoyy", null, 1, false)]
+        [TestCase("John Tolstoyy", "Exxample", -1, false)]
+        [TestCase("John Tolstoyy", "Exxample", 0, false)]
+        [TestCase(null, null, null, false)]
+        public void updateBookTest(string author, string title, int id, bool result)
         {
-            Book fakeBook1 = new Book { Author = "John Tolstoy", Title = "Example", BookId = 1 };
+            
 
+            Book fakeBook2 = new Book { Author = author, Title = title, BookId = id };
 
+            if (result)
+            {
+                Assert.That(()=>bookLog.Update(fakeBook2), Throws.Nothing);
+            }
+            else
+            {
+                Assert.That(() => bookLog.Update(fakeBook2), Throws.Exception);
+            }
+        }
+
+        [TestCase("John Doe", 19, "johndoe@gmail.com", true, true)]
+        [TestCase("John Doe", 19, null, true, false)]
+        [TestCase("John Doe", 17, "johndoe@gmail.com", true, false)]
+        [TestCase("John Doe", 19, "johndoe@gmail.commmmmmmmmmmmmmmmmmm", true, false)]
+        [TestCase(null, 19, "johndoe@gmail.com", true, false)]
+        [TestCase("John Doe", 19, "johndoezgmail.com", true, false)]
+        public void updateCustomerTest(string name, int age, string email, bool gender, bool result)
+        {
+            var expected = new Customer { Age = age, Email = email, Gender = gender, Name = name };
+
+            if (result)
+            {
+                Assert.That(()=>custLog.Update(expected), Throws.Nothing);
+            }
+            else
+            {
+                Assert.That(() => custLog.Update(expected), Throws.Exception);
+
+            }
+        }
+
+        [TestCase(1, 1, true)]
+        [TestCase(-1, 1, false)]
+        [TestCase(1, -1, false)]
+        [TestCase(-1, -1, false)]
+        [TestCase(null, -1, false)]
+        [TestCase(-1, null, false)]
+        [TestCase(null, null, false)]
+        public void updateLibraryTest(int customerId, int bookid, bool result)
+        {
+            var expected=new Library { CustomerId = customerId, BookId = bookid, Book = new Book { Author = "John Tolstoy", Title = "Example", BookId = 1 }, Customer = new Customer { Name = "Jane Doe", Age = 20, Email = "janedoe@gmail.com" } };
+        
+
+            if (result)
+            {
+                Assert.That(() => libLog.Update(expected), Throws.Nothing);
+            }
+            else
+            {
+                Assert.That(() => libLog.Update(expected), Throws.Exception);
+            }
         }
 
     }

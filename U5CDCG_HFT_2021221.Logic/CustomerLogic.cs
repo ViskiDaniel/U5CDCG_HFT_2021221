@@ -88,6 +88,14 @@ namespace U5CDCG_HFT_2021221.Logic
             {
                 throw new NullReferenceException();
             }
+            else if (customer.Email.Length > 32)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+            else if (!customer.Email.Contains("@"))
+            {
+                throw new Exception();
+            }
             else
             {
                 CusRepo.Update(customer);
