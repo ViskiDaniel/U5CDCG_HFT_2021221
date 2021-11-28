@@ -26,13 +26,13 @@ namespace U5CDCG_HFT_2021221.Test
             Mock<ICustomerRepository> mockCustomerRepository = new Mock<ICustomerRepository>();
 
 
-            Book fakeBook1 = new Book { Author = "John Tolstoy", Title = "Example" };
-            Book fakeBook2 = new Book { Author = "Jane Smith", Title = "Fight" };
+            Book fakeBook1 = new Book { Author = "John Tolstoy", Title = "Example", BookId=1 };
+            Book fakeBook2 = new Book { Author = "Jane Smith", Title = "Fight", BookId=2 };
             Customer fakeCustomer1 = new Customer { Name = "Jane Doe", Age = 20, Email = "janedoe@gmail.com" };
             Customer fakeCustomer2 = new Customer { Name = "John Doe", Age = 52, Email = "johndoe@gmail.hu", Gender=true };
 
-            mockLibraryRepository.Setup(x => x.Create(It.IsAny<Library>()));
-            mockLibraryRepository.Setup(x => x.ReadAll())
+            mockLibraryRepository.Setup((x) => x.Create(It.IsAny<Library>()));
+            mockLibraryRepository.Setup((x) => x.ReadAll())
             .Returns(new List<Library>()
                {
                 new Library { Book=fakeBook1, Customer=fakeCustomer1 },
@@ -40,16 +40,25 @@ namespace U5CDCG_HFT_2021221.Test
                 }
             .AsQueryable());
 
-            mockBookRepository.Setup(y => y.Create(It.IsAny<Book>()));
-            mockBookRepository.Setup(y => y.ReadAll())
+            mockCustomerRepository.Setup(x => x.Create(It.IsAny<Customer>()));
+            mockCustomerRepository.Setup(x => x.Read(1))
+            .Returns(new Customer { Name = "Jane Doe", Age = 20, Email = "janedoe@gmail.com" });
+            mockCustomerRepository.Setup(x => x.Read(2))
+            .Returns(new Customer { Name = "John Doe", Age = 52, Email = "johndoe@gmail.hu", Gender = true });
+
+            mockBookRepository.Setup((y) => y.Create(It.IsAny<Book>()));
+            mockBookRepository.Setup((y) => y.ReadAll())
                 .Returns(new List<Book>()
                 {
-                    new Book{ Author=fakeBook1.Author, Title=fakeBook1.Title },
-                    new Book{ Author=fakeBook2.Author,  Title=fakeBook2.Title }
+                    new Book{ Author=fakeBook1.Author, Title=fakeBook1.Title, BookId=fakeBook1.BookId },
+                    new Book{ Author=fakeBook2.Author,  Title=fakeBook2.Title, BookId=fakeBook2.BookId}
                 }.AsQueryable());
 
-            mockCustomerRepository.Setup(z => z.Create(It.IsAny<Customer>()));
-            mockCustomerRepository.Setup(z => z.ReadAll())
+            mockBookRepository.Setup(y => y.Create(It.IsAny<Book>()));
+            mockBookRepository.Setup(y => y.Read(1)).Returns(new Book { Author = "John Tolstoy", Title = "Example", BookId = 1 });
+
+            mockCustomerRepository.Setup((z) => z.Create(It.IsAny<Customer>()));
+            mockCustomerRepository.Setup((z) => z.ReadAll())
                 .Returns(new List<Customer>()
                 {
                     new Customer { Name=fakeCustomer2.Name,Age = fakeCustomer2.Age,Email = fakeCustomer2.Email },
@@ -60,6 +69,10 @@ namespace U5CDCG_HFT_2021221.Test
             libLog = new LibraryLogic(mockLibraryRepository.Object, mockBookRepository.Object, mockCustomerRepository.Object);
             bookLog = new BookLogic(mockBookRepository.Object);
             custLog = new CustomerLogic(mockCustomerRepository.Object);
+
+            var v = bookLog.Read(1);
+            var v2 = bookLog.ReadAll();
+            ;
         }
 
         [Test]
@@ -73,7 +86,7 @@ namespace U5CDCG_HFT_2021221.Test
         public void genderCountTest()
         {
             var expected = libLog.genderAvg().ToArray();
-            Assert.That(expected[0], Is.EqualTo(new KeyValuePair<string, int>("Nő", 1)));
+            Assert.That(expected[1], Is.EqualTo(new KeyValuePair<string, int>("Férfi", 1)));
         }
 
         [Test]
@@ -183,5 +196,18 @@ namespace U5CDCG_HFT_2021221.Test
             Assert.That(() => { libLog.Create(new Library { CustomerId = 1, BookId = 1 }); }, Throws.Nothing);
             Assert.That(() => { libLog.Create(new Library { }); }, Throws.Exception);
         }
+        
+        [TestCase("John Tolstoyy", "Exxample", 2, true)]
+        [TestCase(null, "Exxample", 2, true)]
+        [TestCase("John Tolstoyy", null, 2, true)]
+        [TestCase("John Tolstoyy", "Exxample", -1, true)]
+        [TestCase("John Tolstoyy", "Exxample", 2, true)]
+        public void updateTest()
+        {
+            Book fakeBook1 = new Book { Author = "John Tolstoy", Title = "Example", BookId = 1 };
+
+
+        }
+
     }
 }

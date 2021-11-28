@@ -127,8 +127,7 @@ namespace U5CDCG_HFT_2021221.Logic
             var avg = from x in libRepo.ReadAll()
                       group x by x.Customer.Gender
                       into g
-                      select new  KeyValuePair<string, int>(newValue(g.Key), g.Count());
-                      
+                      select new  KeyValuePair<string, int>(newValue(g.Key), g.Count());                      
                      
             return avg;
         }

@@ -79,6 +79,11 @@ namespace U5CDCG_HFT_2021221.Logic
             {
                 throw new NullReferenceException();
             }
+            else if (book.BookId <= 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
             else
             {
                 BookRep.Update(book);
