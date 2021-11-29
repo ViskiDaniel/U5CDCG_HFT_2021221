@@ -26,5 +26,22 @@ namespace U5CDCG_HFT_2021221.Models
 
         [NotMapped]
         public virtual ICollection<Library> Library { get; set; }
+
+        public override string ToString()
+        {
+            return CustomerId + "-" + Name + "-" + Age + "-" + newValue(Gender) + "-" + Email; ;
+        }
+
+        static string newValue(bool value)
+        {
+            if (value)
+            {
+                return "Férfi";
+            }
+            else
+            {
+                return "Nő";
+            }
+        }
     }
 }

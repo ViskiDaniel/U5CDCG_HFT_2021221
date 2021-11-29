@@ -26,5 +26,10 @@ namespace U5CDCG_HFT_2021221.Models
         [JsonIgnore]
         public virtual Customer Customer { get; set; }
 
+        public override string ToString()
+        {
+            return ActionID + "-" + Customer.Name + "-" + Book.Title;
+        }
+
     }
 }

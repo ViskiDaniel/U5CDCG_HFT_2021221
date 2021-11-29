@@ -31,6 +31,13 @@ namespace U5CDCG_HFT_2021221.Client
 
             menu.Add("customers", ()=> rs.Get<Customer>("customer"));
             menu.Add("books", () => rs.Get<Book>("book"));
+            menu.Add("close", ConsoleMenu.Close).Configure(config=> {
+                config.Selector = "--> ";
+                config.EnableFilter = false;
+                config.Title = "Submenu";
+                config.EnableBreadcrumb = true;
+                config.WriteBreadcrumbAction = titles => Console.WriteLine(string.Join(" / ", titles));
+            });
 
             menu.Show();
 

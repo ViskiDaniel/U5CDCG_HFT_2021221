@@ -65,6 +65,11 @@ namespace U5CDCG_HFT_2021221.Test
                     new Customer { Name = fakeCustomer2.Name, Age = fakeCustomer2.Age, Email = fakeCustomer2.Email }
                 }.AsQueryable());
 
+            mockLibraryRepository.Setup((x) => x.Create(It.IsAny<Library>()));
+            mockLibraryRepository.Setup(x => x.Read(1))
+            .Returns
+            (new Library { ActionID = 1, Book = fakeBook1, Customer = fakeCustomer1, BookId=fakeBook1.BookId, CustomerId=fakeCustomer1.CustomerId  });
+
 
             libLog = new LibraryLogic(mockLibraryRepository.Object, mockBookRepository.Object, mockCustomerRepository.Object);
             bookLog = new BookLogic(mockBookRepository.Object);
@@ -262,5 +267,37 @@ namespace U5CDCG_HFT_2021221.Test
             }
         }
 
-    }
+        [Test]
+        public void customerReadTest()
+        {
+            var expected = new Customer { Name = "Jane Doe", Age = 20, Email = "janedoe@gmail.com" };
+
+            Assert.That(custLog.Read(1).ToString().Equals(expected.ToString()));
+        }
+
+        [Test]
+        public void bookReadTest()
+        {
+            var expected = new Book { Author = "John Tolstoy", Title = "Example", BookId = 1 };
+
+            Assert.That(bookLog.Read(1).ToString().Equals(expected.ToString()));
+        }
+
+        [Test]
+        public void libraryReadTest()
+        {
+            var book = new Book { Author = "John Tolstoy", Title = "Example", BookId = 1 };
+            var customer = new Customer { Name = "Jane Doe", Age = 20, Email = "janedoe@gmail.com" };
+
+            var expected = 
+                new Library { ActionID = 1, 
+                    Book = book ,
+                    Customer = customer, 
+                    BookId = book.BookId, CustomerId = customer.CustomerId };
+
+            Assert.That(libLog.Read(1).ToString().Equals(expected.ToString()));
+            
+        }
+
+}
 }

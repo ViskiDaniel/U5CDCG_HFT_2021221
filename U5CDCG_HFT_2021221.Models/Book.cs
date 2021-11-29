@@ -21,5 +21,10 @@ namespace U5CDCG_HFT_2021221.Models
         [NotMapped]
         public virtual ICollection<Library> Library { get; set; }
 
+        public override string ToString()
+        {
+            return BookId + "-" + Author + "-" + Title;
+        }
+
     }
 }
