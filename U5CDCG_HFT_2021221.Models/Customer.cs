@@ -29,7 +29,7 @@ namespace U5CDCG_HFT_2021221.Models
 
         public override string ToString()
         {
-            return CustomerId + "-" + Name + "-" + Age + "-" + newValue(Gender) + "-" + Email; ;
+            return CustomerId + " - " + Name + " - " + Age + " - " + newValue(Gender) + " - " + Email; ;
         }
 
         static string newValue(bool value)

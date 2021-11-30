@@ -23,7 +23,7 @@ namespace U5CDCG_HFT_2021221.Models
 
         public override string ToString()
         {
-            return BookId + "-" + Author + "-" + Title;
+            return BookId + " - " + Author + " - " + Title;
         }
 
     }

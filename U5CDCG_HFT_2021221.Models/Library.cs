@@ -28,7 +28,7 @@ namespace U5CDCG_HFT_2021221.Models
 
         public override string ToString()
         {
-            return ActionID + "-" + Customer.Name + "-" + Book.Title;
+            return ActionID + " - Customer ID: " + CustomerId + " - Book ID: " + BookId;
         }
 
     }
