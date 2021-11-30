@@ -50,9 +50,15 @@ namespace U5CDCG_HFT_2021221.Client
                 );
             menu.Add("Add items", () => new ConsoleMenu()
             .Add("Book", () => createBook("book"))
+            .Add("Customer", () => createCustomer("customer"))
+            .Add("Library", () => createLibrary("library"))
             .Add("Back to the main", ConsoleMenu.Close)
             .Show()
             );
+            menu.Add("Update items", () => new ConsoleMenu()
+            .Add("Book", ()=>updateBook("book"))
+            .Add("Back to the main", ConsoleMenu.Close)
+            .Show());
             menu.Add("Close the window", ConsoleMenu.Close);
             menu.Show();            
         }
@@ -104,7 +110,7 @@ namespace U5CDCG_HFT_2021221.Client
             createBook.Author = author;
             createBook.Title = title;
             Console.Clear();
-            Console.WriteLine("Updating....");
+            Console.WriteLine("Creating....");
             restService.Post<Book>(createBook, endpoint);
             Console.WriteLine("Book succesfully added!");
             Console.ReadKey();
@@ -118,19 +124,63 @@ namespace U5CDCG_HFT_2021221.Client
             string name = Console.ReadLine();
             Console.WriteLine("Age of the customer");
             int age = int.Parse(Console.ReadLine());
-            Console.WriteLine("Gender of the customer: 1-Male, 2-Female");
-
+            Console.WriteLine("Gender of the customer: 0-Female, 1-Male");
+            int genderint = int.Parse(Console.ReadLine());
+            bool gender = false ;
+            if (genderint == 1)
+            {
+                gender = true;
+            }
             Console.WriteLine("Email of the customer");
             string email = Console.ReadLine();
             createCustomer.Name = name;
             createCustomer.Age = age;
-            createCustomer.Gender = name;
+            createCustomer.Gender = gender;
             createCustomer.Email = email;
             Console.Clear();
-            Console.WriteLine("Updating....");
+            Console.WriteLine("Creating....");
             restService.Post<Customer>(createCustomer, endpoint);
-            Console.WriteLine("Book succesfully added!");
+            Console.WriteLine("Customer succesfully added!");
             Console.ReadKey();
+        }
+
+        void createLibrary(string endpoint)
+        {
+            Console.Clear();
+            Library createLibrary = new Library();
+            Console.WriteLine("ID of the customer:");
+            int cid = int.Parse(Console.ReadLine());
+            Console.WriteLine("ID of the book:");
+            int bid = int.Parse(Console.ReadLine());
+            createLibrary.CustomerId = cid;
+            createLibrary.BookId = bid;
+            Console.Clear();
+            Console.WriteLine("Creating....");
+            restService.Post<Library>(createLibrary, endpoint);
+            Console.WriteLine("Library succesfully added!");
+            Console.ReadKey();
+        }
+
+        void updateBook(string endpoint)
+        {
+            Console.Clear();
+            Book updated = new Book();
+            Console.WriteLine("ID of the book:");
+            int id = int.Parse(Console.ReadLine());
+            Console.WriteLine("Author of the book: ");
+            string author = Console.ReadLine();
+            Console.WriteLine("Title of the book");
+            string title = Console.ReadLine();
+            updated.Author = author;
+            updated.Title = title;
+            updated.BookId = id;
+            Console.Clear();
+            Console.WriteLine("Updating....");
+            restService.Put<Book>(updated, endpoint);
+            Console.WriteLine("Book succesfully updated!");
+            Console.ReadKey();
+
+
         }
     }
 }
