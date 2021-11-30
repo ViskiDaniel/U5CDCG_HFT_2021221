@@ -67,9 +67,19 @@ namespace U5CDCG_HFT_2021221.Client
             .Add("Library", ()=>deleteLibrary("library"))
             .Add("Back to the main", ConsoleMenu.Close)
             .Show());
+            menu.Add("Non-CRUD methods", () => new ConsoleMenu()
+            .Add("Emails with .hu in the domain", () => huEmailMenu("stat/emailhu"))
+            .Add("Amount of customers", () => genderAvgMenu("stat/genderavg"))
+            .Add("Current customers", () => currCustomersMenu("stat/currentcustomers"))
+            .Add("Customers above the age of 50", () => olderCustomersMenu("stat/olderCustomers"))
+            .Add("Our books from Lev Tolstoy", ()=>tolstoyMenu("stat/authorname"))
+            .Add("Back to the main", ConsoleMenu.Close)
+            .Show()); 
             menu.Add("Close the window", ConsoleMenu.Close);
             menu.Show();            
         }
+
+
         void getAll<T>(List<T> list)
         {
             Console.Clear();
@@ -273,6 +283,68 @@ namespace U5CDCG_HFT_2021221.Client
             Console.WriteLine("Deleting...");
             restService.Delete(id, endpoint);
             Console.WriteLine("Library succesfully deleted!");
+            Console.ReadKey();
+        }
+
+        void huEmailMenu(string endpoint)
+        {
+            Console.Clear();
+            Console.WriteLine("Customers with .hu email addresses:");
+            var huemail=restService.Get<object>(endpoint);
+            foreach (var item in huemail)
+            {
+                Console.WriteLine(item.ToString());
+            }
+            Console.ReadKey();
+        }
+
+        void genderAvgMenu(string endpoint)
+        {
+            Console.Clear();
+            Console.WriteLine("Amount of customers: ");
+            var customers = restService.Get<object>(endpoint);
+            foreach (var item in customers)
+            {
+                Console.WriteLine(item.ToString());
+            }
+            Console.ReadKey();
+        }
+
+
+        void currCustomersMenu(string endpoint)
+        {
+            Console.Clear();
+            Console.WriteLine("Our customers: ");
+            var currcustomers = restService.Get<object>(endpoint);
+            foreach (var item in currcustomers)
+            {
+                Console.WriteLine(item.ToString());
+            }
+            Console.ReadKey();
+        }
+
+
+        void olderCustomersMenu(string endpoint)
+        {
+            Console.Clear();
+            Console.WriteLine("Our customers above the age of 50: ");
+            var oldcustomers = restService.Get<object>(endpoint);
+            foreach (var item in oldcustomers)
+            {
+                Console.WriteLine(item.ToString());
+            }
+            Console.ReadKey();
+        }
+
+        void tolstoyMenu(string endpoint)
+        {
+            Console.Clear();
+            Console.WriteLine("Books of Lev Tolstoy: ");
+            var tolstoy = restService.Get<object>(endpoint);
+            foreach (var item in tolstoy)
+            {
+                Console.WriteLine(item.ToString());
+            }
             Console.ReadKey();
         }
     }
