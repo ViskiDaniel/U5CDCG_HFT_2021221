@@ -36,11 +36,11 @@ namespace U5CDCG_HFT_2021221.Models
         {
             if (value)
             {
-                return "Férfi";
+                return "Male";
             }
             else
             {
-                return "Nő";
+                return "Female";
             }
         }
     }

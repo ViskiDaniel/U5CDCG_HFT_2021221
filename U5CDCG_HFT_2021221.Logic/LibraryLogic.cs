@@ -136,11 +136,11 @@ namespace U5CDCG_HFT_2021221.Logic
         {
             if (value)
             {
-                return "Férfi";
+                return "Male";
             }
             else
             {
-                return "Nő";
+                return "Female";
             }
         }
 
