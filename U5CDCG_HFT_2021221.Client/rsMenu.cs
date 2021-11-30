@@ -10,23 +10,11 @@ namespace U5CDCG_HFT_2021221.Client
 {
     class rsMenu
     {
-        //Book bookUpdate;
-        //Book bookCreate;
-        //Customer customerUpdate;
-        //Customer customerCreate;
-        //Library libraryUpdate;
-        //Library libraryCreate;
         RestService restService;
 
         public rsMenu(RestService restService)
         {
             this.restService = restService;
-            //bookUpdate = new Book();
-            //bookCreate = new Book();
-            //customerCreate = new Customer();
-            //customerUpdate = new Customer();
-            //libraryCreate = new Library();
-            //libraryUpdate = new Library();
         }
 
 
