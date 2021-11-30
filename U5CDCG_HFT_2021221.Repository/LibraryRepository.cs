@@ -25,6 +25,7 @@ namespace U5CDCG_HFT_2021221.Repository
         public void Delete(int libraryId)
         {
             context.Remove(Read(libraryId));
+            context.SaveChanges();
         }
 
         public Library Read(int libraryId)
@@ -41,6 +42,8 @@ namespace U5CDCG_HFT_2021221.Repository
         {
             var updated = Read(library.ActionID);
             updated.ActionID = library.ActionID;
+            updated.CustomerId = library.CustomerId;
+            updated.BookId = library.BookId;
             context.SaveChanges();
         }
     }

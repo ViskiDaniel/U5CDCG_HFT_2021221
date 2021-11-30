@@ -57,6 +57,14 @@ namespace U5CDCG_HFT_2021221.Client
             );
             menu.Add("Update items", () => new ConsoleMenu()
             .Add("Book", ()=>updateBook("book"))
+            .Add("Customer", () => updateCustomer("customer"))
+            .Add("Library", () => updateLibrary("library"))
+            .Add("Back to the main", ConsoleMenu.Close)
+            .Show());
+            menu.Add("Delete items", () => new ConsoleMenu()
+            .Add("Book", () => deleteBook("book"))
+            .Add("Customer", () => deleteCustomer("customer"))
+            .Add("Library", ()=>deleteLibrary("library"))
             .Add("Back to the main", ConsoleMenu.Close)
             .Show());
             menu.Add("Close the window", ConsoleMenu.Close);
@@ -179,8 +187,93 @@ namespace U5CDCG_HFT_2021221.Client
             restService.Put<Book>(updated, endpoint);
             Console.WriteLine("Book succesfully updated!");
             Console.ReadKey();
+        }
 
+        void updateCustomer(string endpoint)
+        {
+            Console.Clear();
+            Customer updateCustomer = new Customer();
+            Console.WriteLine("ID of the customer");
+            int id = int.Parse(Console.ReadLine());
+            Console.WriteLine("Name of the customer");
+            string name = Console.ReadLine();
+            Console.WriteLine("Age of the customer");
+            int age = int.Parse(Console.ReadLine());
+            Console.WriteLine("Gender of the customer: 0-Female, 1-Male");
+            int genderint = int.Parse(Console.ReadLine());
+            bool gender = false;
+            if (genderint == 1)
+            {
+                gender = true;
+            }
+            Console.WriteLine("Email of the customer");
+            string email = Console.ReadLine();
+            updateCustomer.CustomerId = id;
+            updateCustomer.Name = name;
+            updateCustomer.Age = age;
+            updateCustomer.Gender = gender;
+            updateCustomer.Email = email;
+            Console.Clear();
+            Console.WriteLine("Updating....");
+            restService.Put<Customer>(updateCustomer, endpoint);
+            Console.WriteLine("Customer succesfully updated!");
+            Console.ReadKey();
+        }
 
+        void updateLibrary(string endpoint)
+        {
+            Console.Clear();
+            Library updateLibrary = new Library();
+            Console.WriteLine("ID of the library:");
+            int lid = int.Parse(Console.ReadLine());
+            Console.WriteLine("ID of the customer:");
+            int cid = int.Parse(Console.ReadLine());
+            Console.WriteLine("ID of the book:");
+            int bid = int.Parse(Console.ReadLine());
+            updateLibrary.ActionID = lid;
+            updateLibrary.CustomerId = cid;
+            updateLibrary.BookId = bid;
+            Console.Clear();
+            Console.WriteLine("Updating....");
+            restService.Put<Library>(updateLibrary, endpoint);
+            Console.WriteLine("Library succesfully updated!");
+            Console.ReadKey();
+        }
+
+        void deleteBook(string endpoint)
+        {
+            Console.Clear();
+            Console.WriteLine("ID of the book you want to delete:");
+            int id = int.Parse(Console.ReadLine());
+            Console.Clear();
+            Console.WriteLine("Deleting...");
+            restService.Delete(id, endpoint);
+            Console.WriteLine("Book succesfully deleted!");
+            Console.ReadKey();
+        }
+
+        void deleteCustomer(string endpoint)
+        {
+            Console.Clear();
+            Console.WriteLine("ID of the customer you want to delete:");
+            int id = int.Parse(Console.ReadLine());
+            Console.Clear();
+            Console.WriteLine("Deleting...");
+            restService.Delete(id, endpoint);
+            Console.WriteLine("Customer succesfully deleted!");
+            Console.ReadKey();
+        }
+
+        void deleteLibrary(string endpoint)
+        {
+            Console.Clear();
+            Console.WriteLine("ID of the library you want to delete:");
+            int id = int.Parse(Console.ReadLine());
+            Console.Clear();
+            Console.WriteLine("Deleting...");
+            restService.Delete(id, endpoint);
+            Console.WriteLine("Library succesfully deleted!");
+            Console.ReadKey();
         }
     }
 }

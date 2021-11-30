@@ -91,7 +91,7 @@ namespace U5CDCG_HFT_2021221.Test
         public void genderCountTest()
         {
             var expected = libLog.genderAvg().ToArray();
-            Assert.That(expected[1], Is.EqualTo(new KeyValuePair<string, int>("Férfi", 1)));
+            Assert.That(expected[1], Is.EqualTo(new KeyValuePair<string, int>("Male", 1)));
         }
 
         [Test]

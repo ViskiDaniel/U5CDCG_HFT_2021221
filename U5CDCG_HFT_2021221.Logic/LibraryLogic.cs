@@ -75,14 +75,6 @@ namespace U5CDCG_HFT_2021221.Logic
             {
                 throw new NullReferenceException();
             }
-            else if (library.Book == null)
-            {
-                throw new NullReferenceException();
-            }
-            else if (library.Customer == null)
-            {
-                throw new NullReferenceException();
-            }
             else if (library.BookId <= 0 || library.CustomerId <= 0)
             {
                 throw new ArgumentOutOfRangeException();

@@ -25,7 +25,7 @@ namespace U5CDCG_HFT_2021221.Repository
         public void Delete(int bookId)
         {
             context.Remove(Read(bookId));
-
+            context.SaveChanges();
         }
 
         public Book Read(int bookId)

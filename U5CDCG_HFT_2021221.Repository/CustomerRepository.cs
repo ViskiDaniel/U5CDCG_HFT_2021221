@@ -41,6 +41,10 @@ namespace U5CDCG_HFT_2021221.Repository
         {
             var updated = Read(customer.CustomerId);
             updated.Age = customer.Age;
+            updated.CustomerId = customer.CustomerId;
+            updated.Email = customer.Email;
+            updated.Gender = customer.Gender;
+            updated.Name = customer.Name;
             context.SaveChanges();
         }
     }

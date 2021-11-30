@@ -51,7 +51,7 @@ namespace U5CDCG_HFT_2021221.Data
                 .HasMany(c => c.Library)
                 .WithOne(l => l.Customer)
                 .HasForeignKey(c => c.CustomerId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<Library>(entity =>
@@ -60,13 +60,13 @@ namespace U5CDCG_HFT_2021221.Data
                 .HasOne(l=>l.Book)
                 .WithMany(b=>b.Library)
                 .HasForeignKey(l=>l.BookId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .OnDelete(DeleteBehavior.Cascade);
 
                 entity
                 .HasOne(l=>l.Customer)
                 .WithMany(b=>b.Library)
                 .HasForeignKey(l=>l.CustomerId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .OnDelete(DeleteBehavior.Cascade);
             });
 
             var BookList = new List<Book> {
