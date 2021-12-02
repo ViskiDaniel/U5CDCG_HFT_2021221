@@ -88,8 +88,6 @@ namespace U5CDCG_HFT_2021221.Logic
         public IEnumerable<object> olderCustomers()
         {
             var oldcus = from x in libRepo.ReadAll()
-                             //join z in custRepo.ReadAll()
-                             //on x.CustomerId equals z.CustomerId
                          where x.Customer.Age > 50
                          select new
                          {
@@ -106,9 +104,6 @@ namespace U5CDCG_HFT_2021221.Logic
         public IEnumerable<KeyValuePair<string, string>> currentCustomers()
         {
             var current = from x in libRepo.ReadAll()
-                          //join z in custRepo.ReadAll()
-                          //on x.CustomerId equals z.CustomerId
-                          //where x.Customer.CustomerId == z.CustomerId
                           select new KeyValuePair<string, string>
                           (x.Customer.Name, x.Book.Title);
            return current;
@@ -139,8 +134,6 @@ namespace U5CDCG_HFT_2021221.Logic
         public IEnumerable<object> emailHu()
         {
             var mail = from x in libRepo.ReadAll()
-                           //join z in custRepo.ReadAll()
-                           //on x.CustomerId equals z.CustomerId
                        where x.Customer.Email.ToUpper().Contains("HU")
                        select new { 
                            _NAME=x.Customer.Name,
@@ -154,8 +147,6 @@ namespace U5CDCG_HFT_2021221.Logic
         public IEnumerable<KeyValuePair<string, string>> booksOfTolstoy()
         {
             var aut = from x in libRepo.ReadAll()
-                      //join z in bookRepo.ReadAll()
-                      //on x.BookId equals z.BookId
                       where x.Book.Author.ToUpper().Contains("TOLSTOY")
                       select new KeyValuePair<string, string>
                       (x.Customer.Name, x.Book.Title);

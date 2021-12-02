@@ -42,7 +42,7 @@ namespace U5CDCG_HFT_2021221.Data
                 .HasMany(b => b.Library)
                 .WithOne(l => l.Book)
                 .HasForeignKey(b => b.BookId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<Customer>(entity =>
