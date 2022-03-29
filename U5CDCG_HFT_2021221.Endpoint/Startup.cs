@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using U5CDCG_HFT_2021221.Data;
+using U5CDCG_HFT_2021221.Endpoint.Services;
 using U5CDCG_HFT_2021221.Logic;
 using U5CDCG_HFT_2021221.Repository;
 
@@ -27,6 +28,7 @@ namespace U5CDCG_HFT_2021221.Endpoint
             services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddTransient<ILibraryRepository, LibraryRepository>();
             services.AddTransient<LibraryDbContext, LibraryDbContext>();
+            services.AddSignalR();
 
         }
 
@@ -43,7 +45,10 @@ namespace U5CDCG_HFT_2021221.Endpoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
+
+            
         }
     }
 }

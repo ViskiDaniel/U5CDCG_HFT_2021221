@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using U5CDCG_HFT_2021221.Endpoint.Services;
 using U5CDCG_HFT_2021221.Logic;
 using U5CDCG_HFT_2021221.Models;
 
@@ -13,10 +15,12 @@ namespace U5CDCG_HFT_2021221.Endpoint.Controllers
     public class LibraryController:ControllerBase
     {
         ILibraryLogic ll;
+        private readonly IHubContext<SignalRHub> hub;
 
-        public LibraryController(ILibraryLogic ll)
+        public LibraryController(ILibraryLogic ll, IHubContext<SignalRHub> hub)
         {
             this.ll = ll;
+            this.hub = hub;
         }
 
         [HttpGet]
@@ -24,6 +28,7 @@ namespace U5CDCG_HFT_2021221.Endpoint.Controllers
         {
             return ll.ReadAll();
         }
+
         [HttpGet("{id}")]
         public Library Get(int id)
         {
