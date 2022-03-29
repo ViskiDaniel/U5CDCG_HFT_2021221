@@ -39,21 +39,23 @@ namespace U5CDCG_HFT_2021221.Endpoint.Controllers
         [HttpPut]
         public void Put([FromBody] Library library)
         {
-            ll.Update(library);            
+            ll.Update(library);
+            this.hub.Clients.All.SendAsync("LibraryUpdated", library);
         }
 
         [HttpPost]
         public void Post([FromBody] Library library)
         {
             ll.Create(library);
+            this.hub.Clients.All.SendAsync("LibraryAdded", library);
         }
 
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var deleted = ll.Read(id);
             ll.Delete(id);
+            this.hub.Clients.All.SendAsync("LibraryDeleted", deleted);
         }
-
-
     }
 }

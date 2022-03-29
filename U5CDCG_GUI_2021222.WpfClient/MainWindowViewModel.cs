@@ -14,6 +14,8 @@ namespace U5CDCG_GUI_2021222.WpfClient
     {
         public RestCollection<Book> Booklist { get; set; }
 
+       
+
         private Book selectedBook;
         public ICommand CreateBook { get; set; }
 
@@ -21,6 +23,8 @@ namespace U5CDCG_GUI_2021222.WpfClient
         public ICommand UpdateBook { get; set; }
 
         public ICommand DeleteBook { get; set; }
+
+        
 
         public Book SelectedBook
         {
@@ -38,11 +42,6 @@ namespace U5CDCG_GUI_2021222.WpfClient
                 (DeleteBook as RelayCommand).NotifyCanExecuteChanged();
             }
         }
-
-       
-
-
-
 
         
         public MainWindowViewModel()
