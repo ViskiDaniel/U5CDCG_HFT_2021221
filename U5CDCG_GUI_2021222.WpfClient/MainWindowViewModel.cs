@@ -14,7 +14,11 @@ namespace U5CDCG_GUI_2021222.WpfClient
     {
         public RestCollection<Book> Booklist { get; set; }
 
+        public RestCollection<Customer> Customerlist { get; set; }
+
         private Book selectedBook;
+
+        private Customer selectedCustomer;
 
         public Book SelectedBook
         {
@@ -30,6 +34,24 @@ namespace U5CDCG_GUI_2021222.WpfClient
                 };
                 OnPropertyChanged();     
                 (DeleteBook as RelayCommand).NotifyCanExecuteChanged();
+            }
+        }
+
+        public Customer SelectedCustomer
+        {
+            get { return selectedCustomer; }
+            set
+            {
+                if (value != null)
+                {
+                    selectedCustomer = new Customer()
+                    {
+                        Name = value.Name, Age=value.Age, CustomerId=value.CustomerId, Email=value.Email, Gender=value.Gender
+                        
+                    };
+                    OnPropertyChanged();
+                    //TODO: írd meg a maradékot, meg h egy ablabkól érd el az egészet
+                }
             }
         }
 

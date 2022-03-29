@@ -57,7 +57,5 @@ namespace U5CDCG_HFT_2021221.Endpoint.Controllers
             ll.Delete(id);
             this.hub.Clients.All.SendAsync("LibraryDeleted", deleted);
         }
-
-
     }
 }
