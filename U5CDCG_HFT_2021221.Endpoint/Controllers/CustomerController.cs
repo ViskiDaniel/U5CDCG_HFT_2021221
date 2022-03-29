@@ -35,18 +35,22 @@ namespace U5CDCG_HFT_2021221.Endpoint.Controllers
         public void Put([FromBody] Customer customer)
         {
             cl.Update(customer);
+            this.hub.Clients.All.SendAsync("CustomerUpdated", customer);
         }
 
         [HttpPost]
         public void Post([FromBody] Customer customer)
         {
             cl.Create(customer);
+            this.hub.Clients.All.SendAsync("CustomerAdded", customer);
         }
 
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var deleted = cl.Read(id);
             cl.Delete(id);
+            this.hub.Clients.All.SendAsync("CustomerDeleted", deleted);
         }
     }
 }
