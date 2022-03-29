@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using U5CDCG_HFT_2021221.Logic;
 using Microsoft.AspNetCore.Http;
 using U5CDCG_HFT_2021221.Models;
+using Microsoft.AspNetCore.SignalR;
+using U5CDCG_HFT_2021221.Endpoint.Services;
 
 namespace U5CDCG_HFT_2021221.Endpoint.Controllers
 {
@@ -14,10 +16,12 @@ namespace U5CDCG_HFT_2021221.Endpoint.Controllers
     public class BookController:ControllerBase
     {
         IBookLogic bl;
+        private readonly IHubContext<SignalRHub> hub;
 
-        public BookController(IBookLogic bl)
+        public BookController(IBookLogic bl, IHubContext<SignalRHub> hub)
         {
             this.bl = bl;
+            this.hub = hub;
         }
 
         [HttpGet("{id}")]
