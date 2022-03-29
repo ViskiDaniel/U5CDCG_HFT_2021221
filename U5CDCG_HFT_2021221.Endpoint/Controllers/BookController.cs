@@ -40,18 +40,23 @@ namespace U5CDCG_HFT_2021221.Endpoint.Controllers
         public void Put([FromBody] Book book)
         {
             bl.Update(book);
+            this.hub.Clients.All.SendAsync("BookUpdated", book);
+
         }
 
         [HttpPost]
         public void Post([FromBody] Book book)
         {
             bl.Create(book);
+            this.hub.Clients.All.SendAsync("BookCreated", book);
         }
 
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var deleted = this.bl.Read(id);           
             bl.Delete(id);
+            this.hub.Clients.All.SendAsync("BookDeleted", deleted);
         }
     }
 }
