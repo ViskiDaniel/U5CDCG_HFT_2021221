@@ -17,7 +17,18 @@
         <ListBox ItemsSource="{Binding Booklist}" SelectedItem="{Binding SelectedBook}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Label Content="{Binding Title}"/>
+                    <Label>
+                        <Label.Content>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} - {1}">
+                                        <Binding Path="Author"/>
+                                        <Binding Path="Title"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </Label.Content>
+                    </Label>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

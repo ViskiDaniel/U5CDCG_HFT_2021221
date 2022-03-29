@@ -14,7 +14,12 @@ namespace U5CDCG_GUI_2021222.WpfClient
     {
         public RestCollection<Book> Booklist { get; set; }
 
+        public RestCollection<Customer> Customerlist { get; set; }
+
         private Book selectedBook;
+        public ICommand CreateBook { get; set; }
+
+        private Customer selectedCustomer;
 
         public Book SelectedBook
         {
@@ -33,14 +38,31 @@ namespace U5CDCG_GUI_2021222.WpfClient
             }
         }
 
+        public Customer SelectedCustomer
+        {
+            get { return selectedCustomer; }
+            set
+            {
+                if (value != null)
+                {
+                    selectedCustomer = new Customer()
+                    {
+                        Name = value.Name, Age=value.Age, CustomerId=value.CustomerId, Email=value.Email, Gender=value.Gender
+                        
+                    };
+                    OnPropertyChanged();
+                    //TODO: írd meg a maradékot, meg h egy ablabkól érd el az egészet
+                }
+            }
+        }
+
 
         public ICommand CreateBook { get; set; }
 
         public ICommand DeleteBook { get; set; }
 
-        public ICommand UpdateBook { get; set; }      
 
-
+        
         public MainWindowViewModel()
         {
             Booklist = new RestCollection<Book>("http://localhost:64653/", "book", "hub");
