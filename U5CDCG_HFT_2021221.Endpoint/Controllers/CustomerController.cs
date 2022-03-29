@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using U5CDCG_HFT_2021221.Endpoint.Services;
 using U5CDCG_HFT_2021221.Logic;
 using U5CDCG_HFT_2021221.Models;
 
@@ -13,10 +15,11 @@ namespace U5CDCG_HFT_2021221.Endpoint.Controllers
     public class CustomerController:ControllerBase
     {
         ICustomerLogic cl;
-
-        public CustomerController(ICustomerLogic cl)
+        private readonly IHubContext<SignalRHub> hub;
+        public CustomerController(ICustomerLogic cl, IHubContext<SignalRHub> hub)
         {
             this.cl = cl;
+            this.hub = hub;
         }
 
         [HttpGet("{id}")]
