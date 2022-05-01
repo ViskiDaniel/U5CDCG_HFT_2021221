@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="StyleSheet.css"/>
+</head>
+<body>
+    <h1>Book catalog</h1>
+
+    <div id="formdiv">
+        <label>Book Author</label>
+        <input type="text" id="bookauthor" />
+        <label>Book title</label>
+        <input type="text" id="booktitle" />
+        <button type="button" onclick="create()">Add book</button>
+    </div>
+
+    <div id="updateformdiv">
+        <label>Book Author</label>
+        <input type="text" id="bookauthortoupdate" />
+        <label>Book title</label>
+        <input type="text" id="booktitletoupdate" />
+        <button type="button" onclick="update()">Update book</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Author
+                </th>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody id="resultarea">
+        </tbody>
+    </table>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
