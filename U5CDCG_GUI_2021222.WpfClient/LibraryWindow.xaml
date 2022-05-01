@@ -22,8 +22,8 @@
                             <TextBlock>
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat="{}{0} - {1}">
-                                        <Binding Path="Library.Customer.Name"/>
-                                        <Binding Path="Library.Book.Title"/>
+                                        <Binding Path="CustomerId"/>
+                                        <Binding Path="BookId"/>
                                     </MultiBinding>
                                 </TextBlock.Text>
                             </TextBlock>
@@ -32,5 +32,14 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <StackPanel Grid.Column="1">
+            <Label Content="ID of the Customer" Background="LightBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedLibrary.CustomerId}" Padding="10" Margin="0,0,0,30"/>
+            <Label Content="ID of the book" Background="LightBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedLibrary.BookId}" Padding="10" Margin="0,0,0,30"/>
+            <Button Content="Create library" Command="{Binding CreateLibrary}" Margin="10" Padding="10" />
+            <Button Content="Update library" Command="{Binding UpdateLibrary}" Margin="10" Padding="10" />
+            <Button Content="Delete library" Command="{Binding DeleteLibrary}" Margin="10" Padding="10" />
+        </StackPanel>
     </Grid>
 </Window>

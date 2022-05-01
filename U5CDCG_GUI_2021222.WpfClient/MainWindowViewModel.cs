@@ -47,6 +47,8 @@ namespace U5CDCG_GUI_2021222.WpfClient
         public MainWindowViewModel()
         {
             Booklist = new RestCollection<Book>("http://localhost:64653/", "book", "hub");
+
+            ;
             CreateBook = new RelayCommand(() =>
               {
                   Booklist.Add(new Book()
